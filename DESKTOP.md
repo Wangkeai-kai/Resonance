@@ -12,12 +12,15 @@
 
 ```sh
 npm install
+node node_modules/electron/install.js
 npm run check
 npm test
 npm run desktop:package
 ```
 
 默认输出到源码父目录的 Resonance-Desktop，入口 Resonance.exe。也可指定已有 Electron 44.7.0 运行时：
+
+Electron 44 的 npm 包在安装依赖时不会自动下载运行时；上述显式安装命令不能省略。构建开发环境需要 Node.js 22.12+。
 
 ```sh
 node scripts/package-desktop.mjs --runtime "你的 Electron dist 目录" --out "源码父目录下的新输出目录"

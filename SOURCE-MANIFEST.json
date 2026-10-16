@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "bytes": 3775,
-      "sha256": "ef3d668a20a8353bc85bfb16b0b2c0115490a6e3a4ca53cc2dde6054969928e6"
+      "bytes": 3951,
+      "sha256": "ae16f25d84a3ce699e3628e190a24a425c30a11128b963a12aa399e9fb396f59"
     },
     {
       "path": ".gitignore",
@@ -35,8 +35,8 @@
     },
     {
       "path": "DESKTOP.md",
-      "bytes": 2519,
-      "sha256": "0b32fabb080b5f9a8466f7525ebf5ae653f48fec24ac6f20cf65a3555ef60f02"
+      "bytes": 2711,
+      "sha256": "e8626c71b7e5cbe35aa5daa14d77ee3dc9168813694b03f01bf77613013cbb2a"
     },
     {
       "path": "GITHUB-PUBLISH.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9079,
-      "sha256": "d3ee9722a6f7474f6e8514eff277d30e681a95b144688108f8673cb3baa7cf8b"
+      "bytes": 9117,
+      "sha256": "23be84908e50cfb35e3ea54b383dab7d450a98c3e094a2802d43fdd4a6c84f69"
     },
     {
       "path": "SECURITY.md",

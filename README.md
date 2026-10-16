@@ -64,6 +64,7 @@ npm start -- --port 4173
 
 ```sh
 npm install
+node node_modules/electron/install.js
 npm run desktop
 npm run check
 npm test

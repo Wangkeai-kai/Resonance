@@ -1,0 +1,41 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'node:http';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import os from 'node:os';
+import {readModelStream} from '../lib/model-stream.mjs';
+import {ModelGateway} from '../lib/models.mjs';
+import {ChatStore} from '../lib/chat.mjs';
+
+const frame=value=>'data: '+JSON.stringify(value)+'\r\n\r\n';
+const delta=text=>({choices:[{index:0,delta:{content:text},finish_reason:null}]});
+const end=frame({choices:[{index:0,delta:{},finish_reason:'stop'}],usage:{prompt_tokens:8,completion_tokens:12}})+'data: [DONE]\r\n\r\n';
+const response=text=>new Response(new ReadableStream({start(c){for(const byte of new TextEncoder().encode(text))c.enqueue(Uint8Array.of(byte));c.close();}}),{headers:{'Content-Type':'text/event-stream'}});
+
+test('protocol and discarded reasoning beyond three MB do not reject a tiny final answer',async()=>{
+  const encoder=new TextEncoder(),thinking=encoder.encode(frame({choices:[{index:0,delta:{reasoning_content:'private-analysis-data'},finish_reason:null}]})),received=[];
+  const source=new Response(new ReadableStream({start(controller){for(let index=0;index<35000;index++)controller.enqueue(thinking);controller.enqueue(encoder.encode(frame(delta('OK'))+end));controller.close();}}));
+  const data=await readModelStream(source,{onText:value=>received.push(value)});assert.equal(data.choices[0].message.content,'OK');assert.ok(data.transport.bytes>3000000);assert.ok(data.transport.ignoredReasoningChars>0);assert.deepEqual(received,['OK']);
+});
+
+test('final answer and incomplete single-event buffers retain separate bounded limits',async()=>{
+  await assert.rejects(readModelStream(new Response(frame(delta('answer-too-long'))+end),{maxText:8}),{code:'model_answer_too_large'});
+  await assert.rejects(readModelStream(new Response('data: '+('x'.repeat(100))),{maxEvent:80}),{code:'model_response_too_large'});
+});
+const wait=async predicate=>{for(let i=0;i<300;i++){if(predicate())return;await new Promise(resolve=>setTimeout(resolve,10));}throw Error('stream test did not settle');};
+async function server(t,handler){const seen=[],instance=http.createServer(async(req,res)=>{const chunks=[];for await(const part of req)chunks.push(part);seen.push(JSON.parse(Buffer.concat(chunks)));await handler(req,res);});await new Promise(resolve=>instance.listen(0,'127.0.0.1',resolve));t.after(async()=>{instance.closeAllConnections();await new Promise(resolve=>instance.close(resolve));});const provider={id:'stream',name:'Streaming fixture',model:'fixture-stream',type:'openai',baseUrl:`http://127.0.0.1:${instance.address().port}/v1`},gateway=new ModelGateway({config:{providers:[provider],agentProviders:{}}},new Map(),async()=>{});return {provider,gateway,seen};}
+
+test('OpenAI SSE survives bytewise UTF-8 and CRLF; reasoning never becomes public text',async()=>{const received=[],data=await readModelStream(response(frame({choices:[{index:0,delta:{reasoning_content:'private thoughts'}}]})+frame(delta('你好'))+frame(delta('，世界'))+end),{onText:text=>received.push(text)});assert.equal(data.choices[0].message.content,'你好，世界');assert.equal(data.usage.prompt_tokens,8);assert.equal(received.at(-1),'你好，世界');assert.ok(received.every(text=>!text.includes('private')));});
+
+test('Anthropic block deltas preserve final text and require message_stop',async()=>{const events=[{type:'message_start',message:{usage:{input_tokens:7}}},{type:'content_block_start',content_block:{type:'thinking',thinking:'private'}},{type:'content_block_delta',delta:{type:'thinking_delta',thinking:'private'}},{type:'content_block_start',content_block:{type:'text',text:''}},{type:'content_block_delta',delta:{type:'text_delta',text:'你好'}},{type:'message_delta',delta:{stop_reason:'end_turn'},usage:{output_tokens:3}},{type:'message_stop'}];const values=[],data=await readModelStream(response(events.map(frame).join('')),{anthropic:true,onText:text=>values.push(text)});assert.equal(data.content.find(c=>c.type==='text').text,'你好');assert.equal(data.usage.input_tokens,7);assert.equal(data.usage.output_tokens,3);assert.deepEqual(values.at(-1),'你好');await assert.rejects(readModelStream(response(events.slice(0,-1).map(frame).join('')),{anthropic:true}),{code:'model_stream_interrupted'});});
+
+test('incomplete, malformed, overloaded and oversized streams cannot be marked complete',async()=>{await assert.rejects(readModelStream(response(frame(delta('partial')))),{code:'model_stream_interrupted'});await assert.rejects(readModelStream(response('data: {broken}\n\n')),{code:'model_invalid_response'});await assert.rejects(readModelStream(response(frame({error:{type:'engine_overloaded_error',message:'untrusted'}}))),{code:'model_overloaded'});await assert.rejects(readModelStream(response(frame(delta('x'.repeat(200)))),{limit:80}),{code:'model_response_too_large'});});
+
+test('gateway publishes actual partial text before completion and redacts a split API key',async t=>{let finish;const fixture=await server(t,async(req,res)=>{res.writeHead(200,{'Content-Type':'text/event-stream'});res.write(frame(delta('first ')));finish=()=>{res.write(frame(delta('sk-stream-')));setTimeout(()=>res.end(frame(delta('fixture-secret'))+end),120);};});fixture.gateway.keys.set('stream','sk-stream-fixture-secret');const values=[];let completed=false;const request=fixture.gateway.request(fixture.provider,[{role:'user',content:'hello'}],100,{onText:text=>values.push(text)}).then(result=>{completed=true;return result;});await wait(()=>values.length>0&&finish);assert.equal(completed,false);assert.equal(values[0],'first ');assert.equal(fixture.seen[0].stream,true);finish();const result=await request;assert.equal(result.text,'first [REDACTED]');assert.ok(values.every(text=>!text.includes('sk-stream-')));assert.equal(fixture.seen.length,1);});
+
+test('interrupting a stream keeps partial text and never automatically resends',async t=>{const fixture=await server(t,async(req,res)=>{res.writeHead(200,{'Content-Type':'text/event-stream'});res.write(frame(delta('keep this text')));});const abort=new AbortController(),values=[];const pending=fixture.gateway.request(fixture.provider,[{role:'user',content:'hello'}],100,{signal:abort.signal,onText:text=>values.push(text)});await wait(()=>values.length>0);abort.abort();await assert.rejects(pending,{code:'model_cancelled'});assert.equal(values[0],'keep this text');assert.equal(fixture.seen.length,1);});
+
+test('chat stores partial output while pending and retains it after stopping',async t=>{const fixture=await server(t,async(req,res)=>{res.writeHead(200,{'Content-Type':'text/event-stream'});res.write(frame(delta('persisted partial reply')));});const runtime=await fs.mkdtemp(path.join(os.tmpdir(),'gongming-stream-'));const engine={runtime,keys:new Map(),active:new Map(),state:{config:{providers:[fixture.provider],agentProviders:{}},jobs:[],skills:[]},gateway:fixture.gateway};const store=await new ChatStore(engine).init();t.after(async()=>{await store.shutdown();await fs.rm(runtime,{recursive:true,force:true,maxRetries:4,retryDelay:30});});const chat=await store.create({kind:'direct',providerId:'stream'});await store.send(chat.id,{requestId:'stream-live-test',text:'hello'});await wait(()=>chat.messages.at(-1)?.text==='persisted partial reply');assert.equal(chat.messages.at(-1).status,'pending');assert.equal(chat.messages.at(-1).phase,'streaming');await store.persistChain;const saved=JSON.parse(await fs.readFile(path.join(runtime,'chats.json')));assert.equal(saved.chats[0].messages.at(-1).text,'persisted partial reply');await store.stop(chat.id);assert.equal(chat.messages.at(-1).status,'interrupted');assert.equal(chat.messages.at(-1).text,'persisted partial reply');assert.equal(fixture.seen.length,1);});
+
+test('JSON-only compatible providers remain usable when streaming is requested',async t=>{const fixture=await server(t,async(req,res)=>{res.writeHead(200,{'Content-Type':'application/json'});res.end(JSON.stringify({choices:[{message:{content:'full reply'},finish_reason:'stop'}]}));});const values=[],result=await fixture.gateway.request(fixture.provider,[{role:'user',content:'hello'}],100,{onText:text=>values.push(text)});assert.equal(result.text,'full reply');assert.equal(fixture.seen.length,1);assert.deepEqual(values,[]);});

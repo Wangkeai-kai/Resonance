@@ -1,0 +1,77 @@
+{
+  "kind": "ppt",
+  "title": "Resonance 多模型协作工作台",
+  "brief": "以 Resonance 的已实现能力为依据，向首次接触产品的个人开发者介绍用途、协作方式和使用边界。此文件为人工整理的演示示例，不是一次真实模型任务的生成记录。",
+  "slides": [
+    {
+      "type": "cover", "tone": "ink", "kicker": "多模型协作工作台",
+      "title": "Resonance",
+      "subtitle": "在一个工作空间里讨论需求、协作制作和审阅成果",
+      "items": [], "footer": "产品介绍"
+    },
+    {
+      "type": "content", "layout": "editorial", "tone": "paper", "kicker": "使用场景",
+      "title": "围绕具体成果开展工作", "subtitle": "先描述要交付什么，再由团队安排步骤",
+      "items": [
+        {"title": "演示文稿", "body": "组织逐页内容，在应用里预览、修改，再导出可编辑 PPTX。"},
+        {"title": "网站与页面", "body": "根据受众和材料制作页面，集中查看预览和待修改内容。"},
+        {"title": "报告与项目计划", "body": "整理资料、结论和行动项，保留依据与待确认信息。"},
+        {"title": "代码开发与审阅", "body": "读取相关源码，在独立工作树中修改，并保留变更记录。"}
+      ], "footer": "成果需要人工核对"
+    },
+    {
+      "type": "content", "layout": "process", "tone": "sage", "kicker": "任务流程",
+      "title": "总控安排任务，用户审阅结果", "subtitle": "各阶段保留进展和交付记录",
+      "items": [
+        {"title": "明确需求", "body": "确认目标、材料和验收条件，标出未知信息。"},
+        {"title": "分配工作", "body": "按配置安排模型承担设计、开发或文档职责。"},
+        {"title": "检查成果", "body": "执行结构检查，核对原始要求，记录缺项。"},
+        {"title": "集中审阅", "body": "查看产物、提出意见，再决定修改或导出。"}
+      ], "footer": "当前使用分阶段工作流"
+    },
+    {
+      "type": "content", "layout": "comparison", "tone": "paper", "kicker": "模型连接",
+      "title": "云端 API 与本地模型", "subtitle": "连接可以分别命名、选择版本并分配职责",
+      "items": [
+        {"title": "API 连接", "body": "选择服务商，填写 API Key 和可用模型。调用费用由服务商计费。"},
+        {"title": "本地模型", "body": "连接已启动的兼容服务，例如 Ollama。可用速度取决于本机与模型。"}
+      ], "footer": "普通聊天订阅不等于拥有通用 API 权限"
+    },
+    {
+      "type": "content", "layout": "editorial", "tone": "ink", "kicker": "对话方式",
+      "title": "单独讨论，也能共同协作", "subtitle": "把过程留在同一个会话里",
+      "items": [
+        {"title": "与成员单聊", "body": "向指定模型提问，保留独立的多轮上下文。"},
+        {"title": "让团队讨论", "body": "选择参与模型，由主模型汇总，展开查看各成员回复。"},
+        {"title": "交给总控制作", "body": "需要实际产物时启动任务，集中查看阶段进度和审阅入口。"}
+      ], "footer": "连接模型后，还需把它加入讨论或分配任务"
+    },
+    {
+      "type": "content", "layout": "editorial", "tone": "paper", "kicker": "常用技能",
+      "title": "常用方法随任务一起使用", "subtitle": "内置技能按内容和角色选择，也支持导入自己的 SKILL.md",
+      "items": [
+        {"title": "演示与网站", "body": "规划每页重点、挑选合适版式，检查网页层级与主要操作。"},
+        {"title": "报告与计划", "body": "区分事实和建议，列清交付物、依赖、负责人和完成条件。"},
+        {"title": "代码与测试", "body": "保持接口、定位问题，准确说明实际执行的验证范围。"},
+        {"title": "需求与日常整理", "body": "保留原始目标，整理决定和行动项，减少无关扩展。"}
+      ], "footer": "可在设置的技能与工具页面启用或停用"
+    },
+    {
+      "type": "content", "layout": "process", "tone": "sage", "kicker": "成果审阅",
+      "title": "修改过程保留版本", "subtitle": "以 PPT 为例",
+      "items": [
+        {"title": "查看初稿", "body": "逐页预览，检查内容、来源和待确认项。"},
+        {"title": "修改与批注", "body": "调整文案或版式，新版本保留原始内容。"},
+        {"title": "确认与导出", "body": "处理意见后定稿，也可以先导出草稿继续修改。"}
+      ], "footer": "导出成功不代表事实已经核实"
+    },
+    {
+      "type": "closing", "layout": "comparison", "tone": "ink", "kicker": "当前能力",
+      "title": "适用范围与使用边界", "subtitle": "从目标清楚、便于逐步核对的任务开始",
+      "items": [
+        {"title": "适合现在使用", "body": "多模型讨论、分阶段制作、文本和页面产物、PPT 内容审阅与导出。"},
+        {"title": "仍需注意", "body": "复杂图表和图片 PPT 尚未支持；外部执行受审批与环境限制，结果仍需复核。"}
+      ], "footer": "Resonance"
+    }
+  ]
+}

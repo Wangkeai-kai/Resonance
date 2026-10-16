@@ -1,0 +1,23 @@
+{
+  "format": "gongming-workflow@1",
+  "name": "产品介绍网站",
+  "icon": "🌐",
+  "description": "根据真实产品资料，制作可预览、可审阅的介绍网站。",
+  "version": "1.0.0",
+  "author": "Resonance",
+  "trigger": {
+    "kind": "website",
+    "starterPrompt": "为以下产品制作网站：{{description}}\n具体要求：{{requirements}}\n请保留来源和待确认事项，不编造客户、评价或数据。"
+  },
+  "pipeline": {
+    "stages": ["orchestrator", "context", "architect", "developer", "tester", "docs", "regression", "git"],
+    "skipStages": []
+  },
+  "inputs": [
+    {"key": "description", "label": "一句话介绍产品", "required": true, "multiline": true},
+    {"key": "requirements", "label": "具体要求", "required": false, "multiline": true},
+    {"key": "audience", "label": "网站访问者", "target": "audience", "default": "潜在用户"},
+    {"key": "style", "label": "视觉偏好", "target": "style", "default": "简洁、清晰，适配手机与桌面"},
+    {"key": "materials", "label": "真实资料与来源", "target": "materials", "multiline": true}
+  ]
+}

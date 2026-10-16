@@ -1,0 +1,23 @@
+(() => {
+  'use strict';
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const api=async(url,body)=>{const r=await fetch(url,{method:body?'POST':'GET',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(30000)});const d=await r.json();if(!r.ok)throw new Error(d.message||'连接失败');return d;};
+  let dialog,timer,signature='';
+  async function open(){
+    if(dialog?.open)return;
+    dialog=document.createElement('dialog');dialog.className='chat-small-dialog';dialog.setAttribute('aria-label','ChatGPT 订阅连接');dialog.innerHTML='<h2>连接 ChatGPT</h2><p>使用符合条件的 Plus / Pro 订阅，登录并授权后即可选择模型，无需 API Key。用量计入该账号的套餐或获准使用的额度。</p><div id="chatGPTAccounts">正在读取连接…</div><div id="chatGPTLogin"></div><p id="chatGPTError" role="alert"></p><div class="button-row"><button class="outline-button" id="chatGPTClose">关闭</button><button class="primary-button" id="chatGPTStart">Continue with ChatGPT</button></div><div class="chat-auth-links"><a href="https://chatgpt.com/settings/usage" target="_blank" rel="noreferrer">管理用量与授权 ↗</a><a href="https://developers.openai.com/siwc/token-sharing-open-source" target="_blank" rel="noreferrer">官方接入说明 ↗</a></div>';
+    document.body.append(dialog);dialog.showModal();dialog.querySelector('#chatGPTClose').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{clearTimeout(timer);dialog.remove();window.ChatUI?.refreshModels?.();},{once:true});
+    dialog.querySelector('#chatGPTStart').onclick=()=>start();signature='';await refresh();
+  }
+  function fail(e){if(dialog?.open)dialog.querySelector('#chatGPTError').textContent=e.message||String(e);}
+  async function start(accountId){try{dialog.querySelector('#chatGPTError').textContent='';const d=await api('/api/chatgpt/start',{accountId});dialog.querySelector('#chatGPTLogin').innerHTML=`<p>在浏览器中完成登录，再回到这里。</p><a class="chat-auth-link" href="${esc(d.authorizationUrl)}" target="_blank" rel="noreferrer">打开 ChatGPT 授权页面 ↗</a>`;refresh();}catch(e){fail(e);}}
+  async function refresh(){clearTimeout(timer);if(!dialog?.open)return;try{const status=await api('/api/chatgpt/status');const next=JSON.stringify(status);if(next!==signature){signature=next;dialog.querySelector('#chatGPTAccounts').innerHTML=`<div class="chat-auth-accounts">${(status.accounts||[]).map(a=>`<div class="chat-auth-account" data-account="${esc(a.id)}"><strong>${esc(a.label||a.email||'ChatGPT 账号')}</strong><p>${a.connected?(a.planEnabled?'已授权套餐使用':'已登录，尚未授权套餐使用'):'需要重新登录'}</p>${a.connected&&a.planEnabled?`<label>可用模型<select aria-label="ChatGPT 模型">${(a.models||[]).map(m=>`<option value="${esc(m.id)}">${esc(m.name||m.id)}</option>`).join('')}</select></label><div class="button-row"><button class="outline-button" data-reload-models="${esc(a.id)}">刷新模型</button><button class="primary-button" data-connect-account="${esc(a.id)}" ${(a.models||[]).length?'':'disabled'}>添加这个模型</button></div>`:`<button class="outline-button" data-reauthorize="${esc(a.id)}">继续登录并授权</button>`}${a.connected?`<button class="text-link" data-logout="${esc(a.id)}">退出此账号</button>`:''}</div>`).join('')||'<p>登录仅用于授权Resonance调用模型，不会导入你的 ChatGPT 聊天记录。</p>'}</div><p>${status.storage==='encrypted'?'登录凭据在本机加密保存。':'当前登录凭据仅保存在内存中，退出应用后需重新登录。'}</p>`;
+        if(status.error)fail(status.error);if(!status.pending&&(status.accounts||[]).some(a=>a.connected))dialog.querySelector('#chatGPTLogin').innerHTML='';
+        dialog.querySelectorAll('[data-reauthorize]').forEach(b=>b.onclick=()=>start(b.dataset.reauthorize));
+        dialog.querySelectorAll('[data-reload-models]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await api('/api/chatgpt/models',{accountId:b.dataset.reloadModels});signature='';await refresh();}catch(e){fail(e);}finally{b.disabled=false;}});
+        dialog.querySelectorAll('[data-connect-account]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{const model=b.closest('[data-account]').querySelector('select').value;await api('/api/chatgpt/connect',{accountId:b.dataset.connectAccount,model});await window.ChatUI?.refreshModels?.();window.Gongming?.toast('已添加 ChatGPT 模型，可继续添加其他模型');}catch(e){fail(e);}finally{b.disabled=false;}});
+        dialog.querySelectorAll('[data-logout]').forEach(b=>b.onclick=async()=>{b.disabled=true;try{const result=await api('/api/chatgpt/logout',{accountId:b.dataset.logout});signature='';await refresh();if(result.revocationConfirmed===false)fail('已在本机退出，但未确认远程撤销。可在 ChatGPT 用量设置中断开此应用。');}catch(e){fail(e);}});
+      }}catch(e){fail(e);}if(dialog?.open)timer=setTimeout(refresh,1800);}
+  window.ChatGPTUI={open};
+  document.addEventListener('click',e=>{if(e.target.closest('[data-chatgpt-connect]'))open();});
+})();

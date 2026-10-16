@@ -1,0 +1,847 @@
+{
+  "name": "gongming-ai-studio",
+  "version": "1.1.2",
+  "includesUserData": false,
+  "files": [
+    {
+      "path": ".github/workflows/check.yml",
+      "bytes": 331,
+      "sha256": "b1aeb90c28fa79b45a1071b69538c48a055a08fec906dcb2eaa255e81dfcbede"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "bytes": 1624,
+      "sha256": "82d5ec3b51e30147783e81b33dea7d316a27725ac5ecfc0cf81897f31ed5626b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 524,
+      "sha256": "e7bc9b3492f88ab5f048ca004283bd20c3d916c82493031e5ae1fd9ea1fb4eb1"
+    },
+    {
+      "path": "启动共鸣.cmd",
+      "bytes": 353,
+      "sha256": "e7ebef738de8125e610c93ba289ebbf8f542a6b19d20fab2fa637d19e26381fe"
+    },
+    {
+      "path": "启动Resonance.cmd",
+      "bytes": 353,
+      "sha256": "e7ebef738de8125e610c93ba289ebbf8f542a6b19d20fab2fa637d19e26381fe"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "bytes": 25051,
+      "sha256": "01ba2386a58a240b0cac417cd854e22dd72184d95f6a5bbb81879f146d8764d6"
+    },
+    {
+      "path": "assets/gongming.ico",
+      "bytes": 17475,
+      "sha256": "36ac6d22801b58928dbc230abcf086e1973c86cb33b28484ae8995994ef449a2"
+    },
+    {
+      "path": "assets/gongming.png",
+      "bytes": 8477,
+      "sha256": "e11c84e0824090fa9330db4fae87da4c2c3cff16e1f0a1ee158b1c861afcd1c3"
+    },
+    {
+      "path": "assets/gongming.svg",
+      "bytes": 426,
+      "sha256": "24b9d3601b1c51922b65918116db9fb97c276db21577ead5d7069c7c63df98cf"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2223,
+      "sha256": "e5cee7fb00d14c502ed828cf5b2df5f7029eb4bee0d9b864bc8bf7d0126efb76"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 906,
+      "sha256": "487df1a1055686aba58b22a306edb3231470e714835c1f2917425e289e12316d"
+    },
+    {
+      "path": "DESKTOP.md",
+      "bytes": 2434,
+      "sha256": "83e250d738caa28eefbf65e7cf64880b2dbf5ac9d2d1f50a2bf180904b83d45b"
+    },
+    {
+      "path": "desktop/browser-check.cjs",
+      "bytes": 4662,
+      "sha256": "453a5c073f6eb25c4fb027792451bf6fdf6a86686a8eb30853a6c673cd398c69"
+    },
+    {
+      "path": "desktop/diagnostics.cjs",
+      "bytes": 3098,
+      "sha256": "11c6395d938eed54bb70da86dc2cfc2079915b80c7bc08fc482c489430fb0e2d"
+    },
+    {
+      "path": "desktop/dictation.ps1",
+      "bytes": 1032,
+      "sha256": "2d44af523672652470c5d4a2826f36edee97a0051ab6a20270b4eb753ea8f219"
+    },
+    {
+      "path": "desktop/install.cmd",
+      "bytes": 191,
+      "sha256": "e5bbbad8fba15aea58ad25e0967814a4334d43fbe5f4469e852aecdcff8d7bc5"
+    },
+    {
+      "path": "desktop/install.ps1",
+      "bytes": 9986,
+      "sha256": "dd103fe58f2910d00ba97a04c22a0d0e562b660f7707d79e0c8d8cd0708563cb"
+    },
+    {
+      "path": "desktop/main.cjs",
+      "bytes": 22444,
+      "sha256": "49a289f4f8a816f40dc0ad8e67816de0556616183ad4e69fcf7b003cc68567b7"
+    },
+    {
+      "path": "desktop/preload.cjs",
+      "bytes": 3002,
+      "sha256": "cdfb6fe4bbac1f6f0b0f04d397bcc04043b2161cc977b4f187c713b6793a6823"
+    },
+    {
+      "path": "desktop/splash.html",
+      "bytes": 2675,
+      "sha256": "0d7c69966ae45741537db7921c12b4786e67acd974ba297b5f0ed39182734617"
+    },
+    {
+      "path": "dist/app.js",
+      "bytes": 40327,
+      "sha256": "59c51a4c2ab3d67e96351993c8032634175c74548021a6a2890d52fa6c1b0b55"
+    },
+    {
+      "path": "dist/approval-ui.css",
+      "bytes": 2385,
+      "sha256": "94ef91b26a7c91dddb65db731985f7e285cb4d1c936dcdef5f57eb52ef924e49"
+    },
+    {
+      "path": "dist/approval-ui.js",
+      "bytes": 7083,
+      "sha256": "264b891587036f3100533e9627a082da61e633c44d1eebcec5c82f8d3820813b"
+    },
+    {
+      "path": "dist/artifacts.js",
+      "bytes": 34277,
+      "sha256": "c932096f0277d8d87ddbf06f5c806aff52bef5e9d1255c7bd5f25bcfbfa26075"
+    },
+    {
+      "path": "dist/chat-images.js",
+      "bytes": 2071,
+      "sha256": "c9b4b8dc673e41be8be06f5f92b531bf692b0f90317f92f678e9e92209aad16a"
+    },
+    {
+      "path": "dist/chat-init.js",
+      "bytes": 208,
+      "sha256": "c84bfd3197909bc87f6ac7ff18e9291297e14765d4e9e3ea3c4490417772cae6"
+    },
+    {
+      "path": "dist/chat-markdown.js",
+      "bytes": 10121,
+      "sha256": "86d8aa58945a4dbc4ab045b494c72a788b78766e697638c06f14f4ddbfe809d0"
+    },
+    {
+      "path": "dist/chat-polish.css",
+      "bytes": 13607,
+      "sha256": "1a10ebb6e03de7c280f5e142018eb3bb103377c4961012c466aa95bd8a520598"
+    },
+    {
+      "path": "dist/chat-renderer.js",
+      "bytes": 2880,
+      "sha256": "5eb1e3be2a4e10495a9b745c7158bac13a3264a57bb4b184ca83da29668c349e"
+    },
+    {
+      "path": "dist/chat-stream.js",
+      "bytes": 2162,
+      "sha256": "e72935f5ba4a9725c74588a6ea392e370e9b5dab2e0fda9feaa76d68bd184630"
+    },
+    {
+      "path": "dist/chat.css",
+      "bytes": 13283,
+      "sha256": "cb0ae7cc025796f735597454be09235a831c8d7c766cc149ec05c4b19e85b0bb"
+    },
+    {
+      "path": "dist/chat.js",
+      "bytes": 80926,
+      "sha256": "3d54e755c986bbfde0859ba93a2e75cfe8a0020327aa6fe465e0a3e10c2a2161"
+    },
+    {
+      "path": "dist/chatgpt-ui.js",
+      "bytes": 5274,
+      "sha256": "91e410cc2761a79d1cc8cfbeaeebbfcd1a2e9c87011db061bd07a2f500e4d90f"
+    },
+    {
+      "path": "dist/code-highlight.js",
+      "bytes": 1923,
+      "sha256": "7c256b12f2ba03e19fa397fbe4d23b5f3f2feabb25366d2515c3e34c5df5a974"
+    },
+    {
+      "path": "dist/connections.css",
+      "bytes": 2479,
+      "sha256": "d6a3ae81859e5fc1dc8f11d74104c2a62965c1a1749051204d672ec8e48db522"
+    },
+    {
+      "path": "dist/connections.js",
+      "bytes": 5284,
+      "sha256": "ca8c44c403ded7a2b248790b5ef5e4048a87169909a7ac351041b3a039e3f678"
+    },
+    {
+      "path": "dist/desktop-chrome.js",
+      "bytes": 728,
+      "sha256": "96d8a63837eabb5f8e090eb465317631ddec027c47247bb3add3ef35292aa560"
+    },
+    {
+      "path": "dist/extensions.css",
+      "bytes": 2529,
+      "sha256": "4098e6d63d7cb9ef0487de5608c34bc0f707ce5ae82e6a0700e7e8bbe6436df1"
+    },
+    {
+      "path": "dist/extensions.js",
+      "bytes": 12665,
+      "sha256": "f4d268791cd7ab5fd68ff192c60fb2a3ffc52983eeb380467f43e9a8f56b19a4"
+    },
+    {
+      "path": "dist/group-chat.css",
+      "bytes": 9019,
+      "sha256": "a0c1fbd943db02f7de4ddc38fe15c1c3c81c21289cc19e1c3d79f95e45ee36fc"
+    },
+    {
+      "path": "dist/hub.js",
+      "bytes": 8312,
+      "sha256": "963577d7f1e4143e8243bab7d6e981af59f80ba5f5e666db0ae0671b29c24f8e"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 13818,
+      "sha256": "d543525bb9da5eb720c8405cb2f964b28c7319ad3ad638ef687cfddd0e1b0e1d"
+    },
+    {
+      "path": "dist/layout.js",
+      "bytes": 3246,
+      "sha256": "954d69202e797fa6b50a5710dff1096462f7e427db71d683e313974a64ffc924"
+    },
+    {
+      "path": "dist/minimal.css",
+      "bytes": 8987,
+      "sha256": "169ee1e2e4e8ec48478e8f47189b28be597ed41e7c5429b9876483e5d626695e"
+    },
+    {
+      "path": "dist/navigation.css",
+      "bytes": 10929,
+      "sha256": "efbd77240340e9f631d4255d4a8d3446b7910cd4c6466ba440c16b82b56572d9"
+    },
+    {
+      "path": "dist/navigation.js",
+      "bytes": 34774,
+      "sha256": "40fb3b21f4011d54420ab54f86eec19114997e17eeba0ec76bdf346357952fd7"
+    },
+    {
+      "path": "dist/preferences.js",
+      "bytes": 2482,
+      "sha256": "4049bef5af83e9b5ab787ce44d9ca885ebadaa029e8581d8f70280332062a78e"
+    },
+    {
+      "path": "dist/requirements.js",
+      "bytes": 7864,
+      "sha256": "ccc21f7784bad1e15d1c29cb62cf8c40d800a125fd844cf5ec3174897a3ade67"
+    },
+    {
+      "path": "dist/runtime.css",
+      "bytes": 22343,
+      "sha256": "bf349c46110ce78ee4d9504f7e5bdc5c990e2320b15a39eaeec7cab6674619c6"
+    },
+    {
+      "path": "dist/runtime.js",
+      "bytes": 75500,
+      "sha256": "30a36aa732da00112be834674f067b8025d0573d9d632d050927c0a3b6fa80f6"
+    },
+    {
+      "path": "dist/styles.css",
+      "bytes": 35980,
+      "sha256": "39d28cbcdc187330920787b89b3c93dd63d74c77bc3103f11fae5a6b3efeb159"
+    },
+    {
+      "path": "dist/task-errors.js",
+      "bytes": 964,
+      "sha256": "7727c24685842831016b2e92593e4372ecbf220a562bac8d02f64992759b92a2"
+    },
+    {
+      "path": "dist/team-ui.css",
+      "bytes": 3675,
+      "sha256": "0ef40ebd5fff9fe61841bd1ebf87c00fe99fa64acbba4c5c5f5faa14c1710889"
+    },
+    {
+      "path": "dist/team-ui.js",
+      "bytes": 6172,
+      "sha256": "929f09591b92ca2d35ece75e0075eb4128ae2227b9e926ec222282f2e4952cd2"
+    },
+    {
+      "path": "dist/theme.css",
+      "bytes": 45427,
+      "sha256": "548e3f1889dc32efcdf7d55c6a39197938f1483d777d81f87999e847485646de"
+    },
+    {
+      "path": "dist/theme.js",
+      "bytes": 1112,
+      "sha256": "a7c33d7609071f3a181202299c02117cb2719ea7c2a673d9edec1edc246c5ca1"
+    },
+    {
+      "path": "dist/usability.css",
+      "bytes": 4216,
+      "sha256": "f80c7a5bfad2323536e082ca9cfa3474d0166528a3988681f8f3c33529b150cc"
+    },
+    {
+      "path": "dist/voice.js",
+      "bytes": 3993,
+      "sha256": "b8920b2908191a6c2656ca6654057717782f914139f9cafe9b009fb066b86a25"
+    },
+    {
+      "path": "dist/work-shell.css",
+      "bytes": 20754,
+      "sha256": "ad4faeae2038cb735ad7a168e87f73a81aa20bfc7fa2a61251c63b6e78f2c427"
+    },
+    {
+      "path": "dist/workflows.css",
+      "bytes": 6314,
+      "sha256": "cf720c7f1141636a956ca9923bd69fa93d655e00cf2ecae2e2749843bd4d12a5"
+    },
+    {
+      "path": "dist/workflows.js",
+      "bytes": 20026,
+      "sha256": "e29384daae62f5e6d6936cfa0646be1802c5ed85eea1cf16bff93e492974547d"
+    },
+    {
+      "path": "docs/ENGINEERING-REVIEW.md",
+      "bytes": 6507,
+      "sha256": "aa9d1fa2a3e098af329b92bac4f1bc0b0ca72ad7eaa1dd9dd5c71b56dc3cc20a"
+    },
+    {
+      "path": "docs/examples/resonance-presentation.json",
+      "bytes": 5244,
+      "sha256": "7a335f101c36ef50a6a95e5ce06c4d1f617726f6db852d330adeff51ab89c8f6"
+    },
+    {
+      "path": "docs/examples/website.gmflow.json",
+      "bytes": 1130,
+      "sha256": "cb33b314bfcf1d37e094b97b589ed16fe111c19d2006a204247d991dceddf586"
+    },
+    {
+      "path": "docs/FRONTEND-OPTIMIZATION-CHECKLIST.md",
+      "bytes": 18445,
+      "sha256": "29f79903d06a62a45dd48e8aa749f4d479bcbf45105de9e6e88176267cdcb662"
+    },
+    {
+      "path": "docs/GITHUB-ABOUT.md",
+      "bytes": 1089,
+      "sha256": "3a947be28d7e705723e8e68834d4ec7d8c17d0b4f1d5ff6b77870c28ea65758f"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "bytes": 854,
+      "sha256": "241593515ec4bb61855df041dc62acbd304036f430fd46845871901a25af6a03"
+    },
+    {
+      "path": "docs/OPTIMIZATION-STATUS.md",
+      "bytes": 3469,
+      "sha256": "f653c6797d3a00fd059bb559c9cf2279407e8e3d57ca48323f751416dabb494d"
+    },
+    {
+      "path": "docs/screenshots/approval.png",
+      "bytes": 209679,
+      "sha256": "34a3b054df6a9af59795a1eb039344182beb9bf2cf6a9b3f2d22f9adc3087d98"
+    },
+    {
+      "path": "docs/screenshots/chat-dark.png",
+      "bytes": 182184,
+      "sha256": "39d8ef6668326987f45730339a4df7e022b521180105ba7b51f42d72af5182f4"
+    },
+    {
+      "path": "docs/screenshots/chat-light.png",
+      "bytes": 197902,
+      "sha256": "a8ebc4d101ae0069711e7bad2a80d6765bef78d7208cf28e09e1a199338b9b0f"
+    },
+    {
+      "path": "docs/screenshots/conversation-menu.png",
+      "bytes": 83961,
+      "sha256": "cd03082d02af0e7feff1d9f45f39bceaaba20c08b310d25f896188f547ebf7df"
+    },
+    {
+      "path": "docs/screenshots/direct-chat.png",
+      "bytes": 89448,
+      "sha256": "03f024aed78943908574eea93f2867f2a70b0c5fe2b022bd6c4c509114167c66"
+    },
+    {
+      "path": "docs/screenshots/group-chat-dark.png",
+      "bytes": 121474,
+      "sha256": "206df461f7b16f069c9d84faa1aa53651e14b7e09a4a01a0652c420b639ef262"
+    },
+    {
+      "path": "docs/screenshots/group-chat.png",
+      "bytes": 124912,
+      "sha256": "f2435c9e4c1efa3371e675e9b39c942fea623ed28d89e2e0afc9c52f8ec1bb46"
+    },
+    {
+      "path": "docs/screenshots/model-streaming.png",
+      "bytes": 108935,
+      "sha256": "d10c60d97383d5265a02d11283f66103c02242e7b13cd6c553415a89930e05d1"
+    },
+    {
+      "path": "docs/screenshots/resonance-artifacts.png",
+      "bytes": 53109,
+      "sha256": "6996d2dbdcd6aac05df0b99467f91801005dc43cc04d736a91c68d21fce52b84"
+    },
+    {
+      "path": "docs/screenshots/resonance-chat.png",
+      "bytes": 122797,
+      "sha256": "25de347030ede927017ed06ea80a29e5e939aa34944736a2b0a8e7758cb956f8"
+    },
+    {
+      "path": "docs/screenshots/resonance-settings.png",
+      "bytes": 71958,
+      "sha256": "f9536714007901fb95c1190f04c31f09777f638de07ee2825d553062818b60d2"
+    },
+    {
+      "path": "docs/screenshots/resonance-skills.png",
+      "bytes": 91889,
+      "sha256": "4a1e9a91b0c5bdfd27e1d3ac5a1dec25bdf0a15526d7e73ff277b6d330b49d9f"
+    },
+    {
+      "path": "docs/screenshots/resonance-task-recovery.png",
+      "bytes": 89551,
+      "sha256": "94df4c1e39d07ddb6c2497f74f5f6efdb00e75b3c08b2d4114af81241a2407dd"
+    },
+    {
+      "path": "docs/screenshots/resonance-workflows.png",
+      "bytes": 110002,
+      "sha256": "16e64126f5d5e54e64e9467f0e39324385b549ed631f2ffb81c669ae8ede82b0"
+    },
+    {
+      "path": "docs/screenshots/task-models.png",
+      "bytes": 224224,
+      "sha256": "f44e9d8a78b2f5ea440be7c2d5cd4605d7afa9e979d24e59c2073b36cbe838b2"
+    },
+    {
+      "path": "docs/screenshots/team-task.png",
+      "bytes": 211443,
+      "sha256": "92ab3ce50f7af7aab362d49436d917b2cbed8bbb8a275204b0cd6653f5a6c111"
+    },
+    {
+      "path": "docs/SKILLS.md",
+      "bytes": 1954,
+      "sha256": "995526f62e9c1156c65902252f875e959b01a3620c968429b15fb9a3ac9de5a1"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "bytes": 3366,
+      "sha256": "ae2c60cbbe8d0bc64215927b968c3419ce3151ce18ad588b606dfa3d7fb14160"
+    },
+    {
+      "path": "docs/WORKFLOW-IMPORT.md",
+      "bytes": 4296,
+      "sha256": "4e1f1f28ca14c91215ecc993dc944a7f377fccf76561aa7a1b7d7b5ec743f51c"
+    },
+    {
+      "path": "GITHUB-PUBLISH.md",
+      "bytes": 2212,
+      "sha256": "b425d46d97c4fe933bed564241836018cab6aae0ed60bedd800804fb063b5388"
+    },
+    {
+      "path": "lib/agent-work.mjs",
+      "bytes": 7725,
+      "sha256": "3432007ed8eb6791b8afb0a0d42df1ab0a0c5fa98db290f6d62489b2c2152c83"
+    },
+    {
+      "path": "lib/audit-log.mjs",
+      "bytes": 1392,
+      "sha256": "b1a29be7a028aa45f8844ac636afcb64afb0586d898613eea16c1d7cb8ef346f"
+    },
+    {
+      "path": "lib/builtin-skills.mjs",
+      "bytes": 9628,
+      "sha256": "1dc64c3a5f7bc7f6d91cdbdbe43c1407dba1f35479ca9c4c2d3b5534ef5b668d"
+    },
+    {
+      "path": "lib/chat-attachments.mjs",
+      "bytes": 4652,
+      "sha256": "3bf7d33d9c66b9eb796841082446dedb313e6ad8390752dcbcac7aff824a40c7"
+    },
+    {
+      "path": "lib/chat-events.mjs",
+      "bytes": 4953,
+      "sha256": "ba4eee03823058bf7f1ba43fd5ca81ac16553f5143e37b0db4f6da771cac2487"
+    },
+    {
+      "path": "lib/chat-history.mjs",
+      "bytes": 6452,
+      "sha256": "19760eb3091c89c97d1a2407829770ee7a304553f1a6b698c66196d981697b3f"
+    },
+    {
+      "path": "lib/chat-versions.mjs",
+      "bytes": 5019,
+      "sha256": "4010dbb93620d41c2e7572d00cc9648a0ff160a7e5a77593f393ab63a1492804"
+    },
+    {
+      "path": "lib/chat.mjs",
+      "bytes": 41272,
+      "sha256": "668bc39c5a44325c385e8a965debc833bef267f422f345f9ffee668633d62888"
+    },
+    {
+      "path": "lib/chatgpt.mjs",
+      "bytes": 28073,
+      "sha256": "ad49c4f0bc16e98e54bde7d2746962932b29051a7ee712624b029a08a363af6f"
+    },
+    {
+      "path": "lib/coordination.mjs",
+      "bytes": 2278,
+      "sha256": "78b6a7b0d393e91d959dabc49775f532d4be57487a1052b7678ef24d88eabaff"
+    },
+    {
+      "path": "lib/desktop-browser.mjs",
+      "bytes": 806,
+      "sha256": "0a622f134f2aaf29feb82356463dc29c5299f5936614f3a61ec247a0e900e721"
+    },
+    {
+      "path": "lib/desktop-vault.mjs",
+      "bytes": 825,
+      "sha256": "2b1617d1a058eb0e901660c211250f27bd9233e709c7c55c3cf9b438ae4e4cdf"
+    },
+    {
+      "path": "lib/engine.mjs",
+      "bytes": 58938,
+      "sha256": "151189e1d51e7e3478bb86a526259c5839f4cde5eeb6ff5522ec1de5c05e3ec0"
+    },
+    {
+      "path": "lib/extensions.mjs",
+      "bytes": 10656,
+      "sha256": "79f7cf8d5ac86a1747cca7d2697e6b5ab492c2d36574c35c192228860299943c"
+    },
+    {
+      "path": "lib/local-snapshot.mjs",
+      "bytes": 1720,
+      "sha256": "f9a0bbe2b7e9b1c8011b419668ff110b3e077bdf3b6e52db15e0d5dadb2551bc"
+    },
+    {
+      "path": "lib/model-policy.mjs",
+      "bytes": 479,
+      "sha256": "197380e714b3c7165f57a5ca6c22db2c967e1209e001226c7968c7d40e2f3f5d"
+    },
+    {
+      "path": "lib/model-stream.mjs",
+      "bytes": 5511,
+      "sha256": "0d248487342e6e9ddf948d0adcb3afc8ac793c9bd6e67cd14f3323728e742f45"
+    },
+    {
+      "path": "lib/models.mjs",
+      "bytes": 15135,
+      "sha256": "de69ce30b2efdc7167c83ae17fffd6dc3a38803309b50a687b169c87837dfb4c"
+    },
+    {
+      "path": "lib/plan-inference.mjs",
+      "bytes": 5066,
+      "sha256": "7fcc030a053e802591089f52fbacc8962e7d7df4f93102509f0dbade1897810c"
+    },
+    {
+      "path": "lib/provider-vault.mjs",
+      "bytes": 2175,
+      "sha256": "4660b903f0e0625f02192340dca0cef445dc05dca56c8d9831afb91187523297"
+    },
+    {
+      "path": "lib/providers.mjs",
+      "bytes": 7354,
+      "sha256": "7c38d84777133a0b8b1067dc06a11744d4ab7a557491f85798fea02cf5ffb288"
+    },
+    {
+      "path": "lib/quick-task.mjs",
+      "bytes": 819,
+      "sha256": "2de73fd9a1699b6b69baa8d15074f7dd53984ef01f6d28dfa002191b907d55e0"
+    },
+    {
+      "path": "lib/request-intent.mjs",
+      "bytes": 844,
+      "sha256": "00f65eb554676a8d84fff9cc68a78d7fe71b063549116059512c6b4b681fa754"
+    },
+    {
+      "path": "lib/result-cache.mjs",
+      "bytes": 1851,
+      "sha256": "a3529bbb7e56a89ebdbe3cfc396e55d1b13a5257e5c55c1b620b717421ec1ec8"
+    },
+    {
+      "path": "lib/safety.mjs",
+      "bytes": 6936,
+      "sha256": "e3e488b33bfc67e9c7b69d358edaa72c742a9f2c30bef0bd5aa00b3f310b33a7"
+    },
+    {
+      "path": "lib/secret-redaction.mjs",
+      "bytes": 1238,
+      "sha256": "95f442b9ea32ebe15a78cc983e22772b1abe4045bb29d8ba06b80353a802d344"
+    },
+    {
+      "path": "lib/website-bundle.mjs",
+      "bytes": 5794,
+      "sha256": "7ab78a413c45b121c242f30aedf3246e2e98ed167adda654da914a69f529faa3"
+    },
+    {
+      "path": "lib/workflow-library.mjs",
+      "bytes": 17054,
+      "sha256": "8002d4488925f83edaf7474279d14d61bff1aa3baed656979c6a75b4d3f09697"
+    },
+    {
+      "path": "lib/workflow-review.mjs",
+      "bytes": 5204,
+      "sha256": "4c72fd586b3e620962b14f5e022b459e7d4d993d4f9c558c88b73b6359a59ffc"
+    },
+    {
+      "path": "lib/workflows.mjs",
+      "bytes": 22771,
+      "sha256": "f96f8c946ff6c5ce7cb0e9063a0d870c5faeb9cb1b1a53c49af21aecbd633fc0"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1211,
+      "sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e"
+    },
+    {
+      "path": "package.json",
+      "bytes": 1548,
+      "sha256": "62c6e43172c9f0feb1d4a450772ee22c543fac8cf5d5a2ef1ca93a96f063037e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8766,
+      "sha256": "abab2f6524b0b4d19faf763ed014bccd1de158bae63ae7b88e3ef3a43c645088"
+    },
+    {
+      "path": "scripts/check.mjs",
+      "bytes": 729,
+      "sha256": "3a1e43ed907c1364f06e411f89fb3de0f9d8e723ac332c51b449639675f4e735"
+    },
+    {
+      "path": "scripts/package-desktop.mjs",
+      "bytes": 7630,
+      "sha256": "0ca86bc4f97d9ab30da7d536f0dc17aec14236b3a19dbcfca9309ac9c8503dbf"
+    },
+    {
+      "path": "scripts/package-source.mjs",
+      "bytes": 9391,
+      "sha256": "1ebe12b1929087b66430be3d5910d2768eccdf2763841f0e663d6a4ea04ad007"
+    },
+    {
+      "path": "scripts/recover-history.mjs",
+      "bytes": 20414,
+      "sha256": "ed983cdc39d5b700f5c522bf78e89d8306cc942ac7898d2139cc6ac2f397461a"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 873,
+      "sha256": "e1b4cad19d17d5cdeb2d9321cba23219a8da139781cea9cb916c7234a8505a12"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 19281,
+      "sha256": "b0b13001fcdce8001e53a4957fdb29635b5add443e2c3e535a79d38807dca937"
+    },
+    {
+      "path": "TESTING.md",
+      "bytes": 19326,
+      "sha256": "84cf75885960cdf0bfc68ffb6f62a1ce1ac2b69fe846043822d91073eec1e388"
+    },
+    {
+      "path": "tests/agent-work.mjs",
+      "bytes": 3754,
+      "sha256": "35a92cde04e3b435b1ab226fe05cef66bb951d7328a748e10520c39dd6c6cc83"
+    },
+    {
+      "path": "tests/approval-policy.mjs",
+      "bytes": 2523,
+      "sha256": "a8e87b22893d9d10367a1227a964e6fe4c54be0eff556998cee7e760afb5aa84"
+    },
+    {
+      "path": "tests/approval-ui.mjs",
+      "bytes": 2614,
+      "sha256": "76cbd3f1ee500185f8bbae99dbfca2b724725b4f70c4f1a5d0342829fe4fe80e"
+    },
+    {
+      "path": "tests/audit-log.mjs",
+      "bytes": 2799,
+      "sha256": "f06f2a24f0da22d1ba139cacb6499e79719c08c9199ca15c4396b479ac73d396"
+    },
+    {
+      "path": "tests/backend.mjs",
+      "bytes": 30254,
+      "sha256": "932245c5a09c16fb105cf639b4f35e9e0bbfae3a467fa6f5a1cd68d66ae52eef"
+    },
+    {
+      "path": "tests/builtin-skills.mjs",
+      "bytes": 3331,
+      "sha256": "b9c09e6f74d0d9a1f7bdb33c61780087bc78365cebd137cb6b162e2f88f4b99b"
+    },
+    {
+      "path": "tests/chat-attachments.mjs",
+      "bytes": 2621,
+      "sha256": "0c3ac6217d0f03c23c5c35ac09b7d46f303e0173f5ea8ed8b219b076f408f9f6"
+    },
+    {
+      "path": "tests/chat-events.mjs",
+      "bytes": 3345,
+      "sha256": "c5040f680afe2e68e1b9eed005727718f0a08d735b18f3ed267081c064ec2450"
+    },
+    {
+      "path": "tests/chat-group.mjs",
+      "bytes": 21616,
+      "sha256": "2f814aedb1ca619dde89b2ba1191bae7100aad21fcaa58a88282e4aff6528910"
+    },
+    {
+      "path": "tests/chat-history.mjs",
+      "bytes": 10154,
+      "sha256": "a841689b8251b8fa50c896d791fd27cd0e8152d3415acb937a4929985ccad11f"
+    },
+    {
+      "path": "tests/chat-markdown.mjs",
+      "bytes": 5242,
+      "sha256": "9fd7e110a0606bc03eb9cc4bf0fe501024c5540f505adf02c362e7a4fab29fc0"
+    },
+    {
+      "path": "tests/chat.mjs",
+      "bytes": 12199,
+      "sha256": "83acc8868789f076c659811f85c780f4b26d11a438de11bfea4360d4b957a9a4"
+    },
+    {
+      "path": "tests/chatgpt.mjs",
+      "bytes": 22316,
+      "sha256": "bb1059ec5ed05d56685499fe86a289c15e9f70ef2468c57e34d26c74f08264a5"
+    },
+    {
+      "path": "tests/code-highlight.mjs",
+      "bytes": 926,
+      "sha256": "40c851290eb8d50cc761e8bb80d065f5da85889641327f6b7c8b2505be87f90c"
+    },
+    {
+      "path": "tests/coordination.mjs",
+      "bytes": 8808,
+      "sha256": "40ec447878975b65620ecfae20936257c622a63a4b423ae8dc0adf583d5cc005"
+    },
+    {
+      "path": "tests/desktop-startup.mjs",
+      "bytes": 5695,
+      "sha256": "4a7ecbe26e960083d332b220240eb1790f0b3a562db75a437cc14c34a39dfe5b"
+    },
+    {
+      "path": "tests/diagnostics.mjs",
+      "bytes": 3094,
+      "sha256": "a9b46d4774c2af371d6d06e4eb8f6be3ac34a40961f9040e75dd73f127d4d22d"
+    },
+    {
+      "path": "tests/extensions.mjs",
+      "bytes": 4198,
+      "sha256": "0ff338f7cd6f20742c82f71cfb0be9c04c2fed9c91331d57fbb400dacffca116"
+    },
+    {
+      "path": "tests/history-recovery.mjs",
+      "bytes": 14261,
+      "sha256": "8b49941dc334e699f9010f13e94f874c7d6092a3a6f80e3f91ce3189cac55aef"
+    },
+    {
+      "path": "tests/model-policy.mjs",
+      "bytes": 1917,
+      "sha256": "42805016004f77ae25c4f25ef7ae39d7e23d0f29cfb1a9e9b360177b1db9395f"
+    },
+    {
+      "path": "tests/model-stream.mjs",
+      "bytes": 8343,
+      "sha256": "06eef8fefe69ace3a1059bf02213c63e23bd64ff7d1c874329ba616f8dd149be"
+    },
+    {
+      "path": "tests/models-request.mjs",
+      "bytes": 11006,
+      "sha256": "705b4df5b2bd71ca6c3ca4c91163c9d8dfcd53eb979881a44ca4c7568e30e292"
+    },
+    {
+      "path": "tests/persistence.mjs",
+      "bytes": 6941,
+      "sha256": "c4369c49022df685f55f1f5acdeb68f6277edb4514f33c884f512132ca21b92e"
+    },
+    {
+      "path": "tests/plan-inference.mjs",
+      "bytes": 10010,
+      "sha256": "b0fe553d73abffb7dd07c8cb3cd7175b5e7fc0e97f4b7db4b184acdfe4e7c169"
+    },
+    {
+      "path": "tests/provider-catalog.mjs",
+      "bytes": 5773,
+      "sha256": "977cafaa516f82f3b04076ea67a2328edb8186099e9c1a3dacbd0a343c542add"
+    },
+    {
+      "path": "tests/provider-reuse.mjs",
+      "bytes": 4204,
+      "sha256": "942e831270989192cb1e118123bd3f2c58448adf6ec98a587c7766337d9ed080"
+    },
+    {
+      "path": "tests/provider-vault.mjs",
+      "bytes": 2990,
+      "sha256": "a6acca98740244034c821302209abf79d36d0141c780c57b05cfbdbfb157b24f"
+    },
+    {
+      "path": "tests/quick-task.mjs",
+      "bytes": 4267,
+      "sha256": "defa85fae62f74c4a71e62ae6a9acb5774a147c8ee9bd1e4f189221ccb968486"
+    },
+    {
+      "path": "tests/reliability.mjs",
+      "bytes": 6111,
+      "sha256": "7c347613d6cf62d598f595454f3e1d5881f5dbb0b2e719581e784ba1c18cead7"
+    },
+    {
+      "path": "tests/result-cache.mjs",
+      "bytes": 2664,
+      "sha256": "547af86fb45903d27277173eb67b5e802106be375336eef40d6110ccbe53d39f"
+    },
+    {
+      "path": "tests/secret-redaction.mjs",
+      "bytes": 1371,
+      "sha256": "0bc37ca506b61d26b833bbfaab63b031f0f0678f882f89aa5baf88b95750a512"
+    },
+    {
+      "path": "tests/source-package.mjs",
+      "bytes": 3660,
+      "sha256": "7e46b90ca2fac4d48c3bb3afd4bf1e62ef83eb3109270872911247343ce897bb"
+    },
+    {
+      "path": "tests/task-errors.mjs",
+      "bytes": 1016,
+      "sha256": "80eddd848aa59752e22c1f9689fa3de6ac7ae45323ba92c2c1b4189fece1a632"
+    },
+    {
+      "path": "tests/team-ui.mjs",
+      "bytes": 2281,
+      "sha256": "7c14d096b04d5b31441a28c37a6ba1a80e3ab866fbd6cc4ba75f62791c44fb3e"
+    },
+    {
+      "path": "tests/voice-navigation.mjs",
+      "bytes": 5456,
+      "sha256": "5ed3faca395e3f7135d53d9c989ec0f568f39d49c0a709ac232504b9f6048d1a"
+    },
+    {
+      "path": "tests/website-bundle.mjs",
+      "bytes": 5361,
+      "sha256": "623c54d69a84da5f80912cb818cc5985c736cc6cd5d3233369d5be72662541e6"
+    },
+    {
+      "path": "tests/workflow-library.mjs",
+      "bytes": 12050,
+      "sha256": "d89d28f4cdda67ccfdcaac8457203474b7429a45e2a607e7209917747ab6d05b"
+    },
+    {
+      "path": "tests/workflow-pipeline.mjs",
+      "bytes": 12222,
+      "sha256": "e67cf379af6941c3515643e4e23c4bc30ef461873562aa3fad307a374147c31f"
+    },
+    {
+      "path": "tests/workflow-review.mjs",
+      "bytes": 8206,
+      "sha256": "4c7b3c918a11378803db24c2e149e772fe4a0d9c2a1a7b9c648df12fa93f5715"
+    },
+    {
+      "path": "tests/workflows.mjs",
+      "bytes": 10708,
+      "sha256": "93efa33057b8c48fdd56900d9d776da5619c3cec474a77f33e5357cd99a3ba51"
+    }
+  ]
+}

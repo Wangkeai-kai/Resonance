@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#222326"><meta name="description" content="Resonance：在同一个工作空间规划项目、协作与审阅。"><script src="theme.js"></script><title>Resonance · 工作空间</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="runtime.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="workflows.css"><link rel="stylesheet" href="chat.css"><link rel="stylesheet" href="minimal.css"><link rel="stylesheet" href="work-shell.css"><link rel="stylesheet" href="team-ui.css"><link rel="stylesheet" href="connections.css"><link rel="stylesheet" href="extensions.css"><link rel="stylesheet" href="approval-ui.css"><link rel="stylesheet" href="group-chat.css"><link rel="stylesheet" href="chat-polish.css"><link rel="stylesheet" href="usability.css"><link rel="stylesheet" href="navigation.css"></head>
+<body>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+<symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 3a5 5 0 0 1 3 4v3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.6 5.6 0 0 0-8 0l-.8.8-.8-.8a5.6 5.6 0 0 0-8 8L12 22l8.8-9.4a5.6 5.6 0 0 0 0-8Z"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11H3Z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="16" cy="17" r="3"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M5 17h14l-2-4V9a5 5 0 0 0-10 0v4Zm5 3h4"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 13 8-13 8Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L20 5"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5Z"/><path d="M15 3v5h4M8 12h8m-8 4h6"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m7 6-5 6 5 6m10-12 5 6-5 6m-3-16-4 20"/></symbol>
+<symbol id="i-slides" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M12 17v4m-5 0h10M7 12V8m5 4V6m5 6v-2"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a3 3 0 0 1-3 3H9l-6 4V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3Z"/><path d="M7 8h10M7 12h7"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M3 21l5-1L21 7a2 2 0 0 0-5-5L3 15Z"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="m14 2-11 13h8l-1 7 11-13h-8Z"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="5" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="20" r="2"/><path d="M6 8v10m0-4h6a6 6 0 0 0 6-5"/></symbol>
+</defs></svg>
+<nav class="app-rail" aria-label="快捷导航"><button data-view="discover" title="工作台" aria-label="工作台"><svg><use href="#i-home"/></svg></button><button data-view="chat" title="对话" aria-label="对话"><svg><use href="#i-chat"/></svg></button><button data-view="results" title="作品与任务" aria-label="作品与任务"><svg><use href="#i-grid"/></svg></button><button data-action="connect" title="模型连接" aria-label="模型连接"><svg><use href="#i-team"/></svg></button><span></span><button data-action="settings" title="设置" aria-label="设置"><svg><use href="#i-settings"/></svg></button></nav><aside class="sidebar">
+ <a class="brand" href="#discover" aria-label="Resonance首页"><span class="brand-mark"><i></i><i></i><i></i></span><strong>Resonance<span>本地工作台</span></strong></a>
+ <button class="new-task" data-view="chat"><svg><use href="#i-plus"/></svg>新聊天</button>
+ <nav aria-label="主导航" class="work-primary-nav">
+ <button class="nav-item" data-view="chat"><svg><use href="#i-chat"/></svg><span>对话</span><kbd>⇧⌘O</kbd></button>
+ <button class="nav-item" data-view="projects"><svg><use href="#i-folder"/></svg><span>项目</span></button>
+ <button class="nav-item" data-view="workflows"><svg><use href="#i-branch"/></svg><span>工作流</span><span class="nav-new">导入</span></button>
+ <button class="nav-item" data-view="artifacts"><svg><use href="#i-grid"/></svg><span>产物</span></button>
+ <button class="nav-item" data-view="automation"><svg><use href="#i-bolt"/></svg><span>自动化</span></button>
+ </nav><section id="sidebarContext" class="sidebar-context" aria-label="当前工作区"></section>
+ <details class="workspace-tools" hidden><summary>会话工具</summary></details>
+ <section id="connectedModels" class="connected-models" hidden><button data-action="connect">已连接模型 <span>＋</span></button><p>正在读取模型…</p></section>
+ <div class="sidebar-footer"><button class="nav-item" data-view="settings"><svg><use href="#i-settings"/></svg><span>设置</span></button><span><i class="green-dot"></i> 本地工作空间</span></div>
+ </aside>
+<div class="app-shell">
+ <header class="topbar"><nav class="mobile-views" aria-label="切换工作区"><button type="button" data-sidebar-toggle aria-label="展开导航">☰</button><button data-view="chat">对话</button><button data-view="projects">项目</button><button data-view="workflows">工作流</button><button data-view="artifacts">产物</button></nav><div class="breadcrumbs"><button id="backButton" class="icon-btn" aria-label="返回工作台"><svg class="flip"><use href="#i-chevron"/></svg></button><span id="breadcrumb">工作台</span></div><label class="search-box"><svg><use href="#i-search"/></svg><input id="globalSearch" placeholder="搜索任务、作品、协作方案" aria-label="搜索任务、作品、协作方案"><kbd>Ctrl K</kbd></label><div class="header-tools"><button id="themeToggle" class="theme-toggle" type="button" aria-label="切换到浅色主题" title="切换到浅色主题"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>浅色</span></button><button class="budget-chip" data-action="connect"><span class="green-dot"></span>连接模型 <strong id="headerBudget" hidden></strong></button><span class="divider"></span><button class="icon-btn" data-action="notifications" aria-label="通知"><svg><use href="#i-bell"/></svg></button><button class="icon-btn" data-action="settings" aria-label="工作台设置"><svg><use href="#i-settings"/></svg></button></div></header>
+ <main id="mainContent" tabindex="-1">
+  <section id="discoverView" class="view active">
+   <div class="page-tabs"><button class="selected" data-view="discover">工作台</button><button data-view="chat">开始对话</button><button data-view="results">我的作品</button><span class="today">按自己的节奏工作 <span>✦</span></span></div>
+   <div class="hero-grid"><section class="hero"><div class="hero-text"><span class="eyebrow"><span></span> 日常工作 · 项目协作</span><h1>今天，<br>想做点什么？</h1><p>把要做的事写下来，团队会接着往下做。</p><form id="homeTaskForm" class="home-task-form"><label class="sr-only" for="homeBrief">你想完成的任务</label><textarea id="homeBrief" rows="2" maxlength="20000" placeholder="例如：为我的咖啡店做一个网站" required></textarea><div><button type="button" class="text-link" data-requirements="home">先分析需求</button><button class="dark-button" type="submit">开始任务 <svg><use href="#i-arrow"/></svg></button></div></form><div class="hero-bottom"><span class="mini-faces"><b>C</b><b>G</b><b>D</b><b>✧</b></span><span>规划 · 制作 · 审阅</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="vinyl"><div class="vinyl-inner"><div class="sound-bars"><i></i><i></i><i></i><i></i><i></i></div><span>共  鸣</span></div></div><div class="floating-label label-plan"><span>✧</span><div><b>灵感就位</b><small>PLAN → CREATE</small></div></div><div class="floating-label label-review"><span>✓</span><div><b>好作品，一起打磨</b><small>REVIEW TOGETHER</small></div></div><span class="art-spark spark-one">✳</span><span class="art-spark spark-two">+</span><span class="hero-edition">VOL. 001 / CO-CREATE</span></div></section>
+   <aside class="budget-card getting-started"><div class="small-section-title"><span>从想法到完成</span><svg><use href="#i-check"/></svg></div><ol><li><b>01</b><div><strong>连接一个模型</strong><p>选择服务商，填入密钥。<br>也可以使用本地模型。</p></div></li><li><b>02</b><div><strong>说清要做什么</strong><p>文档、演示、网站、项目，<br>从一句需求开始。</p></div></li><li><b>03</b><div><strong>检查，再交付</strong><p>查看成果与修改记录，<br>按你的意见继续打磨。</p></div></li></ol><button class="text-link" data-action="connect">管理模型连接 <svg><use href="#i-chevron"/></svg></button><span id="ringBudget" hidden></span></aside></div>
+   <section id="liveWorkHome"></section><section id="workflowHome"></section><section class="recommendations"><div class="section-heading"><h2>快速开始 <span>使用已连接的团队</span></h2><button class="text-link" data-action="new">自定义任务 <svg><use href="#i-chevron"/></svg></button></div><div id="presetGrid" class="preset-grid"></div></section>
+   <section class="recent-section"><div class="section-heading"><h2>示例任务 <span id="taskSubtitle">精选示例，点击即可体验</span></h2><button class="text-link" data-view="history">全部示例 <svg><use href="#i-chevron"/></svg></button></div><div id="recentTasks" class="task-table"></div></section>
+   <footer class="content-foot"><span>任务、修改和审阅记录，留在同一个地方。</span><span>Resonance / 工作空间</span></footer>
+  </section>
+  <section id="extensionsView" class="view"></section><section id="resultsView" class="view"></section>
+  <section id="workspaceView" class="view"></section>
+  <section id="teamView" class="view"></section>
+  <section id="historyView" class="view"></section>
+  <section id="favoritesView" class="view"></section>
+  <section id="libraryView" class="view"></section>
+ </main>
+</div>
+<footer class="player"><div class="player-task"><div id="playerArt" class="player-art"><svg><use href="#i-branch"/></svg></div><div><strong id="playerTitle">选择一个任务</strong><span id="playerDescription">打开模板，体验协作与审阅</span></div><button id="favoriteCurrent" class="icon-btn" aria-label="收藏当前方案"><svg><use href="#i-heart"/></svg></button></div><div class="player-center"><div class="player-controls"><button data-action="team" class="icon-btn" aria-label="选择协作团队"><svg><use href="#i-branch"/></svg></button><button id="playerStart" class="play-button" aria-label="开始协作"><svg><use href="#i-play"/></svg></button><button data-action="workspace" class="icon-btn" aria-label="打开任务结果"><svg><use href="#i-grid"/></svg></button><span id="playerStatus">开始协作</span></div><div class="play-progress"><small id="progressLabel">待开始</small><div class="progress-track"><span id="progressFill"></span></div><small id="progressPercent">0%</small></div></div><div class="player-team"><div class="team-avatars" id="playerAvatars"></div><div><strong id="playerTeamCount">3 位协作成员</strong><span>本地模板演示 · 未连接 API</span></div><button data-action="team" class="icon-btn" aria-label="管理协作成员"><svg><use href="#i-team"/></svg></button></div></footer>
+<dialog id="mainDialog"><div id="dialogContent"></div></dialog><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="artifacts.js"></script><script src="approval-ui.js"></script><script src="runtime.js"></script><script src="code-highlight.js"></script><script src="chat-markdown.js"></script><script src="team-ui.js"></script><script src="chat-images.js"></script><script src="chat-stream.js"></script><script src="chat-renderer.js"></script><script src="task-errors.js"></script><script src="chat.js"></script><script src="chatgpt-ui.js"></script><script src="app.js"></script><script src="requirements.js"></script><script src="workflows.js"></script>
+<script src="preferences.js"></script><script src="hub.js"></script><script src="voice.js"></script><script src="connections.js"></script><script src="extensions.js"></script><script src="desktop-chrome.js"></script><script src="layout.js"></script><script src="navigation.js"></script><script src="chat-init.js"></script></body></html>
+

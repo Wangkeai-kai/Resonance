@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Resonance · 工作台</title>
+  <style>
+    *{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:"Microsoft YaHei UI","Microsoft YaHei",sans-serif;color:#f5f5f5;background:#171717;display:flex;flex-direction:column;font-size:18px}header{padding:38px 48px;font-size:27px;font-weight:650;letter-spacing:.12em}main{margin:auto;width:min(620px,80vw);padding:0 0 80px}.mark{width:66px;height:66px;border:2px solid #666;border-radius:22px;display:grid;place-items:center;margin-bottom:30px;background:#ffffff0c}.mark span{display:block;width:25px;height:25px;border:3px solid #f3f3f3;border-radius:50%;position:relative}.mark span:after{content:"";position:absolute;width:25px;height:25px;border:3px solid #f3f3f3;border-radius:50%;left:9px;top:-3px}h1{font-size:32px;line-height:1.5;margin:0 0 16px;font-weight:600;letter-spacing:.02em}p{color:#bcbcbc;font-size:18px;line-height:1.9;margin:0;max-width:580px}.progress{width:110px;height:3px;border-radius:3px;background:#ffffff26;margin-top:32px;overflow:hidden}.progress:after{content:"";display:block;width:44px;height:3px;background:#f0f0f0;animation:move 1.6s ease-in-out infinite}button{margin-top:28px;padding:13px 26px;background:#ededed;border:0;border-radius:12px;color:#202020;font:600 17px "Microsoft YaHei UI",sans-serif;cursor:pointer}button:hover{background:#fff}button:focus-visible{outline:3px solid #aaa;outline-offset:4px}button:disabled{opacity:.6;cursor:wait}button[hidden]{display:none}body[data-state=error] .progress{display:none}footer{padding:28px 48px;font-size:15px;color:#8c8c8c;letter-spacing:.04em}@keyframes move{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(66px);opacity:1}}@media(prefers-reduced-motion:reduce){.progress:after{animation:none;width:70px}}
+  </style>
+</head>
+<body data-state="loading">
+  <header>Resonance</header>
+  <main aria-live="polite">
+    <div class="mark" aria-hidden="true"><span></span></div>
+    <h1 id="status-title">正在打开工作台</h1>
+    <p id="status-detail">连接本地工作区，你的任务和作品都在这里。</p>
+    <div class="progress" aria-hidden="true"></div>
+    <button id="retry" type="button" hidden>重新打开工作台</button>
+    <button id="splashDiagnostics" type="button" hidden>查看诊断日志</button>
+  </main>
+  <footer>GONGMING · 桌面工作空间</footer>
+</body>
+</html>

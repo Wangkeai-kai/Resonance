@@ -1,0 +1,25 @@
+.sidebar-resize{position:fixed;left:calc(var(--rail) + var(--nav) - 5px);top:10px;bottom:0;width:10px;z-index:103;cursor:col-resize;touch-action:none;outline:none;-webkit-app-region:no-drag}
+.sidebar-resize:after{content:"";position:absolute;left:4px;top:0;bottom:0;width:2px;border-radius:3px;background:transparent;transition:background .15s}
+.sidebar-resize:hover:after,.sidebar-resize:focus-visible:after,.sidebar-resizing .sidebar-resize:after{background:var(--accent)}
+.sidebar-resize:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+body[data-desktop=true] .sidebar-resize{top:44px}
+body[data-view=workspace] .sidebar-resize{bottom:100px}
+.sidebar-resizing,.sidebar-resizing *{cursor:col-resize!important;user-select:none!important}
+.chat-history-menu{position:fixed;z-index:200;padding:6px;min-width:180px;max-width:calc(100vw - 16px);border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);box-shadow:0 8px 30px #12223625}
+.chat-history-menu button{display:block;width:100%;padding:10px 12px;border-radius:8px;text-align:left;font-size:14px;color:#c44c55}
+:root[data-theme=dark] .chat-history-menu button{color:#ffb2b6}
+.chat-history-menu button:hover,.chat-history-menu button:focus-visible{background:var(--hover)}
+.chat-history-menu button:disabled{color:var(--muted);cursor:default}
+.task-team-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 12px}
+.task-team-heading .field-label{margin:0;font-size:16px}
+.task-team-heading .button-row{gap:14px}
+.task-connected-models{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;max-height:340px;overflow:auto;scrollbar-width:thin;padding:3px}
+.task-connected-models .team-member{min-width:0;background:var(--input);border:1px solid var(--line);border-radius:14px;padding:15px;color:var(--ink)}
+.task-connected-models .team-empty,.task-connected-models>.rt-hint{grid-column:1/-1}
+#taskCreateError{color:#c44c55;font-size:14px}#taskCreateError:empty{display:none}
+.task-model-entry{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:16px 0;color:var(--muted);font-size:14px}.task-model-entry button{color:var(--accent);font-size:14px}
+.chat-room{position:relative}.chat-scroll-bottom{position:absolute;bottom:235px;left:50%;transform:translateX(-50%);z-index:8;padding:9px 15px;border:1px solid var(--line);border-radius:22px;background:var(--surface);color:var(--ink);box-shadow:0 4px 18px #12223620;font-size:14px}.chat-scroll-bottom[hidden],.chat-sync-state[hidden]{display:none}.chat-sync-state{position:absolute;bottom:205px;left:50%;transform:translateX(-50%);font-size:12px;padding:7px 12px;background:var(--surface);border-radius:10px;color:var(--muted);z-index:8;max-width:90%}.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0}
+.chat-message .chat-reply-body>.text-link,.chat-version-controls{margin-top:10px;margin-right:14px;font-size:12px;color:var(--muted);display:inline-flex;gap:9px;align-items:center}.chat-version-controls button{padding:3px 5px;font-size:14px}.chat-version-controls button:disabled{opacity:.4}.chat-history-menu button:not(:first-child){color:var(--ink)}.markdown-task{accent-color:var(--accent);vertical-align:middle;width:15px;height:15px;margin-right:4px}.code-keyword{color:#8a4dc4}.code-string{color:#277d50}.code-number{color:#a8611d}.code-comment{color:#71808a;font-style:italic}.code-tag{color:#2866a8}:root[data-theme=dark] .code-keyword{color:#c5a2f4}:root[data-theme=dark] .code-string{color:#9edba5}:root[data-theme=dark] .code-number{color:#eac087}:root[data-theme=dark] .code-comment{color:#9baab3}:root[data-theme=dark] .code-tag{color:#91bff1}
+#mainDialog .dialog-footer{gap:16px;flex-wrap:wrap}#mainDialog .dialog-header h2{font-size:24px}
+#mainDialog .dialog-header p,#mainDialog .form-textarea{font-size:16px;line-height:1.65}
+@media(max-width:700px){.sidebar-resize{display:none}.task-connected-models{grid-template-columns:1fr;max-height:260px}.task-team-heading .button-row{gap:10px}#mainDialog .dialog-header h2{font-size:21px}}

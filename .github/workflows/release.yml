@@ -1,0 +1,40 @@
+name: Build Windows package
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows-package:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin npm toolchain
+        run: npm install --global npm@10.9.2
+      - name: Install pinned Electron runtime
+        run: npm install --no-audit --no-fund
+      - run: npm run check
+      - run: npm test
+      - name: Package public Windows application
+        run: node scripts/package-desktop.mjs --out ../Resonance-Windows
+      - name: Package source
+        run: node scripts/package-source.mjs --out ../Resonance-Source
+      - name: Archive Windows package and calculate checksum
+        shell: pwsh
+        run: |
+          $packageDirectory = [IO.Path]::GetFullPath((Join-Path $env:GITHUB_WORKSPACE '../Resonance-Windows'))
+          $zipPath = [IO.Path]::GetFullPath((Join-Path $env:GITHUB_WORKSPACE '../Resonance-Windows.zip'))
+          Compress-Archive -LiteralPath $packageDirectory -DestinationPath $zipPath -CompressionLevel Optimal
+          $digest = (Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash.ToLowerInvariant()
+          Set-Content -LiteralPath ($zipPath + '.sha256') -Value ($digest + '  Resonance-Windows.zip') -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Resonance-Windows
+          path: |
+            ../Resonance-Windows.zip
+            ../Resonance-Windows.zip.sha256
+            ../Resonance-Source.zip
+          if-no-files-found: error

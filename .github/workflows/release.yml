@@ -44,14 +44,6 @@ jobs:
           Compress-Archive -LiteralPath $packageDirectory -DestinationPath $zipPath -CompressionLevel Optimal
           $digest = (Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash.ToLowerInvariant()
           Set-Content -LiteralPath ($zipPath + '.sha256') -Value ($digest + '  Resonance-Windows.zip') -Encoding ascii
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Resonance-Windows
-          path: |
-            ../Resonance-Windows.zip
-            ../Resonance-Windows.zip.sha256
-            ../Resonance-Source.zip
-          if-no-files-found: error
       - name: Publish preview release after all checks and packaging succeed
         shell: pwsh
         env:

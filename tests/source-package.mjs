@@ -9,7 +9,7 @@ import { collectSourceEntries, packageSource } from '../scripts/package-source.m
 async function fixture() {
   const parent = await fs.mkdtemp(path.join(tmpdir(), 'gongming-source-package-')), project = path.join(parent, 'source');
   for (const folder of ['dist', 'lib', 'desktop', 'scripts', 'assets', 'tests', '.runtime', 'tests/backend-fixture-private', 'docs/screenshots']) await fs.mkdir(path.join(project, folder), { recursive: true });
-  const files = ['package.json', 'server.mjs', 'README.md', 'ARCHITECTURE.md', 'GITHUB-PUBLISH.md', 'TESTING.md', 'DESKTOP.md', '启动共鸣.cmd', '.gitignore', 'dist/index.html', 'lib/engine.mjs', 'tests/example.mjs', '.runtime/state.json', 'tests/backend-fixture-private/secret.mjs'];
+  const files = ['package.json', 'server.mjs', 'README.md', 'ARCHITECTURE.md', 'GITHUB-PUBLISH.md', 'TESTING.md', 'DESKTOP.md', '启动Resonance.cmd', '.gitignore', 'dist/index.html', 'lib/engine.mjs', 'tests/example.mjs', '.runtime/state.json', 'tests/backend-fixture-private/secret.mjs'];
   for (const name of files) await fs.writeFile(path.join(project, name), name === 'package.json' ? JSON.stringify({ name: 'fixture', version: '0.4.1' }) : `fixture ${name}`);
   return { parent, project, output: path.join(parent, 'release') };
 }
@@ -28,7 +28,7 @@ test('source package excludes private runtime and fixture data, and round-trips 
     offset = start + compressed;
   }
   assert.equal(zip.readUInt32LE(offset), 0x02014b50);
-  assert.equal(decoded.get('启动共鸣.cmd').toString(), 'fixture 启动共鸣.cmd');
+  assert.equal(decoded.get('启动Resonance.cmd').toString(), 'fixture 启动Resonance.cmd');
   assert.equal(decoded.size, manifest.files.length + 1);
 });
 

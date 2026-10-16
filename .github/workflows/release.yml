@@ -1,5 +1,11 @@
 name: Build Windows package
 on:
+  push:
+    branches: [main]
+    paths:
+      - package.json
+      - .github/workflows/release.yml
+      - docs/RELEASE.md
   workflow_dispatch:
 permissions:
   contents: read
@@ -7,8 +13,12 @@ jobs:
   windows-package:
     runs-on: windows-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -38,3 +48,32 @@ jobs:
             ../Resonance-Windows.zip.sha256
             ../Resonance-Source.zip
           if-no-files-found: error
+      - name: Publish preview release after all checks and packaging succeed
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          $version = (Get-Content -Raw package.json | ConvertFrom-Json).version
+          if ($version -notmatch '^\d+\.\d+\.\d+$') { throw 'Invalid release version' }
+          $tag = 'v' + $version
+          $releaseDirectory = Join-Path $env:RUNNER_TEMP 'resonance-release'
+          New-Item -ItemType Directory -Path $releaseDirectory -Force | Out-Null
+          $windowsName = 'Resonance-' + $tag + '-Windows-x64.zip'
+          $sourceName = 'Resonance-' + $tag + '-source.zip'
+          $windowsAsset = Join-Path $releaseDirectory $windowsName
+          $sourceAsset = Join-Path $releaseDirectory $sourceName
+          Copy-Item -LiteralPath '../Resonance-Windows.zip' -Destination $windowsAsset
+          Copy-Item -LiteralPath '../Resonance-Source.zip' -Destination $sourceAsset
+          $checksum = Join-Path $releaseDirectory 'SHA256SUMS.txt'
+          $lines = @(
+            (Get-FileHash -LiteralPath $windowsAsset -Algorithm SHA256).Hash.ToLowerInvariant() + '  ' + $windowsName
+            (Get-FileHash -LiteralPath $sourceAsset -Algorithm SHA256).Hash.ToLowerInvariant() + '  ' + $sourceName
+          )
+          Set-Content -LiteralPath $checksum -Value $lines -Encoding ascii
+          gh release create $tag --target $env:GITHUB_SHA --title ('Resonance ' + $tag) --notes-file docs/RELEASE.md --draft --prerelease
+          if ($LASTEXITCODE -ne 0) { throw 'Release creation failed; existing releases are never overwritten' }
+          gh release upload $tag $windowsAsset $sourceAsset $checksum
+          if ($LASTEXITCODE -ne 0) { throw 'Asset upload failed; release remains a draft' }
+          gh release edit $tag --draft=false
+          if ($LASTEXITCODE -ne 0) { throw 'Release publication failed' }

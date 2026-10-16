@@ -148,13 +148,13 @@ test('real HTTP routes expose executable preparation and keep legacy workflows c
     }
     await fs.rm(runtime,{recursive:true,force:true,maxRetries:8,retryDelay:100});
   });
-  for (let attempt=0; !log.includes('http://127.0.0.1:'); attempt++) {
+  for (let attempt=0; !/session=[a-f0-9]{64}/.test(log); attempt++) {
     if (spawnError) throw spawnError;
     if (child.exitCode !== null || attempt > 150) throw Error('server did not start: '+log);
     await new Promise(resolve => setTimeout(resolve,50));
   }
   const request = async (route, method='GET', value) => {
-    const response = await fetch('http://127.0.0.1:'+port+route,{method,headers:{'Content-Type':'application/json'},...(value === undefined ? {} : {body:JSON.stringify(value)})});
+    const response = await fetch('http://127.0.0.1:'+port+route,{method,headers:{'Content-Type':'application/json',Authorization:'Bearer '+log.match(/session=([a-f0-9]{64})/)[1]},...(value === undefined ? {} : {body:JSON.stringify(value)})});
     return {status:response.status,data:await response.json()};
   };
   const legacy = await request('/api/workflows'); assert.equal(legacy.status,200); assert.equal(legacy.data.workflows.length,5);

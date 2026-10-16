@@ -37,3 +37,5 @@ Resonance-*/
 workflow-library.json
 workflow-library.previous.json
 chat-attachments/
+
+audit.jsonl.*

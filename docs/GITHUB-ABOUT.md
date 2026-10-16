@@ -10,7 +10,7 @@ Topics 建议：ai-agents、multi-agent、llm、workflow、electron、local-firs
 
 ## Release 标题
 
-Resonance v1.1.2
+Resonance v1.1.3
 
 新增 8 项可启停的内置技能，按任务选取并用于实际模型请求；PPT 支持多种版式、配色与可编辑导出。包含流式回复、对话版本和归档、可导入工作流、集中设置、开发检查点和隔离网站测试。当前为 Windows 预览版；自主调度、完整 MCP 传输、自动更新和签名尚未完成。
 

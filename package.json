@@ -1,6 +1,6 @@
 {
   "name": "gongming-ai-studio",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "private": true,
   "description": "Resonance：本地多 AI 协作与成果审阅工作台",
   "type": "module",
@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node server.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node tests/backend.mjs && node --test tests/workflows.mjs tests/workflow-pipeline.mjs tests/workflow-review.mjs tests/chat.mjs tests/chatgpt.mjs tests/plan-inference.mjs tests/provider-reuse.mjs tests/approval-policy.mjs tests/provider-vault.mjs tests/persistence.mjs tests/desktop-startup.mjs tests/history-recovery.mjs tests/chat-markdown.mjs tests/quick-task.mjs tests/coordination.mjs tests/extensions.mjs tests/approval-ui.mjs tests/team-ui.mjs tests/source-package.mjs tests/chat-group.mjs tests/voice-navigation.mjs tests/provider-catalog.mjs tests/models-request.mjs tests/reliability.mjs tests/model-stream.mjs tests/result-cache.mjs tests/diagnostics.mjs tests/chat-events.mjs tests/chat-history.mjs tests/code-highlight.mjs tests/agent-work.mjs tests/secret-redaction.mjs tests/website-bundle.mjs tests/audit-log.mjs tests/workflow-library.mjs tests/chat-attachments.mjs tests/task-errors.mjs tests/model-policy.mjs tests/builtin-skills.mjs",
+    "test": "node tests/backend.mjs && node --test tests/workflows.mjs tests/workflow-pipeline.mjs tests/workflow-review.mjs tests/chat.mjs tests/chatgpt.mjs tests/plan-inference.mjs tests/provider-reuse.mjs tests/approval-policy.mjs tests/provider-vault.mjs tests/persistence.mjs tests/desktop-startup.mjs tests/history-recovery.mjs tests/chat-markdown.mjs tests/quick-task.mjs tests/coordination.mjs tests/extensions.mjs tests/approval-ui.mjs tests/team-ui.mjs tests/source-package.mjs tests/chat-group.mjs tests/voice-navigation.mjs tests/provider-catalog.mjs tests/models-request.mjs tests/reliability.mjs tests/model-stream.mjs tests/result-cache.mjs tests/diagnostics.mjs tests/chat-events.mjs tests/chat-history.mjs tests/code-highlight.mjs tests/agent-work.mjs tests/secret-redaction.mjs tests/website-bundle.mjs tests/audit-log.mjs tests/workflow-library.mjs tests/chat-attachments.mjs tests/task-errors.mjs tests/model-policy.mjs tests/builtin-skills.mjs tests/api-session.mjs",
     "desktop": "electron .",
     "desktop:package": "node scripts/package-desktop.mjs",
     "source:package": "node scripts/package-source.mjs"

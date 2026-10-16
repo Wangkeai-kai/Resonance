@@ -101,7 +101,7 @@
       if(artifact.kind==='ppt'||artifact.kind==='website'){
         const frame=document.createElement('iframe');frame.className=artifact.kind==='ppt'?'wf-slide-frame':'wf-site-frame';frame.title=artifact.kind==='ppt'?`第 ${slide+1} 页幻灯片预览`:'网站隔离预览';
         frame.setAttribute('sandbox',artifact.kind==='website'?'allow-scripts':'');frame.referrerPolicy='no-referrer';
-        frame.srcdoc=secureDocument(artifact.kind==='ppt'?window.ArtifactEngine.slideHtml(artifact.slides[slide],slide,artifact.slides.length):artifact.html,artifact.kind==='website');target.append(frame);
+        target.append(frame);window.ApiSession.preview(frame,secureDocument(artifact.kind==='ppt'?window.ArtifactEngine.slideHtml(artifact.slides[slide],slide,artifact.slides.length):artifact.html,artifact.kind==='website'),artifact.kind==='website');
       }else{const pre=document.createElement('pre');pre.className='wf-markdown';pre.textContent=artifact.markdown||artifact.code||JSON.stringify(artifact,null,2);target.append(pre);}
       if(artifact.kind==='ppt')body.querySelector('#wfPageLabel').textContent=`第 ${slide+1} / ${artifact.slides.length} 页`;
       body.querySelector('#wfCommentLabel').textContent=artifact.kind==='ppt'?`给第 ${slide+1} 页提意见`:'审阅意见';

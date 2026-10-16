@@ -2,9 +2,10 @@
 
 const { contextBridge, ipcRenderer } = require('electron');
 
-// The renderer gets metadata only: no Node.js, filesystem, commands, or generic IPC.
+// Only metadata and a session credential are bridged; no generic IPC or execution.
 contextBridge.exposeInMainWorld('gongmingDesktop', Object.freeze({
   isDesktop: true,
+  sessionToken: () => ipcRenderer.invoke('desktop:api-token'),
   platform: process.platform,
 }));
 

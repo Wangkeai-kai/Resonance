@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {createApiSession, PreviewStore, workspaceCsp, previewCsp} from './lib/api-session.mjs';
 import fs from 'node:fs/promises';
 import { realpathSync } from 'node:fs';
 import path from 'node:path';
@@ -15,7 +16,6 @@ import {createHash} from 'node:crypto';
 import {connectionCandidate,discoverModels} from './lib/providers.mjs';
 import {ChatStore} from './lib/chat.mjs';
 import {Extensions} from './lib/extensions.mjs';
-import {readAuditLog} from './lib/audit-log.mjs';
 import {isConversationQuestion} from './lib/request-intent.mjs';
 import {serveChatStream} from './lib/chat-events.mjs';
 import {desktopBrowser} from './lib/desktop-browser.mjs';
@@ -25,6 +25,7 @@ const root=path.dirname(fileURLToPath(import.meta.url));
 const portIndex=process.argv.indexOf('--port');
 const port=Number(portIndex>=0?process.argv[portIndex+1]:process.env.PORT || 4173);
 if(!Number.isInteger(port)||port<1||port>65535)throw new Error('Invalid --port');
+const apiSession=createApiSession(), previews=new PreviewStore();
 const engine=new Engine(root,{dataDirectory:process.env.GONGMING_DATA_DIR});
 const vault=desktopVault();
 const chatgpt=new ChatGPTConnection(engine.runtime,{vault});
@@ -56,9 +57,17 @@ const server=http.createServer(async(request,response)=>{
     if(![`127.0.0.1:${port}`,`localhost:${port}`,`[::1]:${port}`].includes(host))throw new HttpError(403,'Only loopback hosts are allowed');
     const url=new URL(request.url,`http://${host}`);
     if(request.headers.origin && request.headers.origin!==`http://${host}`)throw new HttpError(403,'跨站请求已拒绝');
+    if(request.method==='GET' && /^\/preview\/[a-f0-9]{48}$/.test(url.pathname)) {
+      const preview=previews.get(url.pathname.split('/').pop());
+      if(!preview)throw new HttpError(404,'预览已过期，请重新打开成果');
+      response.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','Content-Security-Policy':previewCsp(preview.scripts),'X-Frame-Options':'SAMEORIGIN'});
+      response.end(preview.html);return;
+    }
     if(url.pathname.startsWith('/api/')){
+      if(!apiSession.accepts(request))throw new HttpError(401,'本地会话未授权或已失效，请重新打开工作台','api_session_required');
       if(request.method==='OPTIONS')throw new HttpError(403,'Cross-origin API access is disabled');
       if(request.method==='POST'&&!String(request.headers['content-type']||'').includes('application/json'))throw new HttpError(415,'API 写操作要求 application/json');
+      if(request.method==='POST'&&url.pathname==='/api/previews'){const input=await body(request,3*1024*1024);return json(response,201,{url:previews.create(input.html,input.scripts)});}
       if(request.method==='GET'&&url.pathname==='/api/extensions')return json(response,200,extensions.status());
       if(request.method==='POST'&&url.pathname==='/api/skills')return json(response,200,await extensions.skill(await body(request)));
       if(request.method==='POST'&&url.pathname==='/api/mcp/connect')return json(response,200,await extensions.connect(await body(request)));
@@ -85,7 +94,7 @@ const server=http.createServer(async(request,response)=>{
         const input=await body(request);const {provider,apiKey}=connectionCandidate(input,engine.state.config.providers,engine.keys);
         try{return json(response,200,{models:await discoverModels(provider,apiKey)});}catch{throw new HttpError(400,'未能读取模型列表，请核对密钥，或手动填写服务商提供的模型 ID');}
       }
-      if(request.method==='GET'&&url.pathname==='/api/audit')return json(response,200,await readAuditLog(path.join(engine.runtime,'audit.jsonl'),{limit:Math.max(1,Math.min(250,Number(url.searchParams.get('limit'))||100)),before:url.searchParams.get('before')||undefined,jobId:url.searchParams.get('jobId')||undefined}));
+      if(request.method==='GET'&&url.pathname==='/api/audit')return json(response,200,await engine.readAudit({limit:Math.max(1,Math.min(250,Number(url.searchParams.get('limit'))||100)),before:url.searchParams.get('before')||undefined,jobId:url.searchParams.get('jobId')||undefined}));
       if(request.method==='GET'&&url.pathname==='/api/status')return json(response,200,engine.status());
       if(request.method==='GET'&&url.pathname==='/api/chat-status') {
         const selected=url.searchParams.get('chatId'),ids=new Set(selected?(chats.get(selected).jobIds||[]):[]);
@@ -157,11 +166,16 @@ const server=http.createServer(async(request,response)=>{
     if(relative.includes('\\')||relative.includes('\0')||relative.split('/').some(part=>part==='..'||part.startsWith('.')))throw new HttpError(403,'Invalid asset path');
     const dist=path.join(root,'dist'),target=path.resolve(dist,relative);if(!isWithin(dist,target))throw new HttpError(403,'Invalid asset path');
     let resolved;try{resolved=realpathSync(target);}catch{throw new HttpError(404,'文件不存在');}if(!isWithin(dist,resolved))throw new HttpError(403,'Asset symlink escapes dist');
-    const data=await fs.readFile(resolved);response.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream','Cache-Control':'no-cache','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; frame-src 'self' blob:; object-src 'none'; base-uri 'self'"});response.end(request.method==='HEAD'?undefined:data);
+    const data=await fs.readFile(resolved);response.writeHead(200,{'Content-Type':mime[path.extname(target)]||'application/octet-stream','Cache-Control':'no-cache','Content-Security-Policy':workspaceCsp});response.end(request.method==='HEAD'?undefined:data);
   }catch(error){const message=engine.gateway.redact(error.message);if(!response.headersSent)json(response,error.status||500,{error:error.code||'request_failed',message});else response.end();}
 });
 server.requestTimeout=150000;server.headersTimeout=10000;
-server.listen(port,'127.0.0.1',()=>console.log(`Review FM local collaboration: http://127.0.0.1:${port}\nLocal workspace and credential storage. State: ${engine.runtime}`));
+server.listen(port,'127.0.0.1',()=>{
+  const origin=`http://127.0.0.1:${port}`;
+  if(process.send)process.send({type:'gongming:ready',token:apiSession.token});
+  console.log(`Review FM local collaboration: ${origin}`);
+  if(!process.send)console.log(`Open Resonance: ${origin}/#session=${apiSession.token}`);
+});
 let shuttingDown=false;
 async function shutdown(){if(shuttingDown)return;shuttingDown=true;for(const job of engine.state.jobs)if(engine.active.has(job.id))job.status='interrupted';for(const controller of engine.active.values())controller.abort();await chats.shutdown();await engine.persist();await engine.auditChain;await chatgpt.close({releaseOwner:false});server.close(()=>process.exit(0));setTimeout(()=>process.exit(0),1500).unref();}
 process.on('SIGINT',shutdown);process.on('SIGTERM',shutdown);

@@ -1,6 +1,6 @@
 {
   "name": "gongming-ai-studio",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "includesUserData": false,
   "files": [
     {
@@ -10,28 +10,58 @@
     },
     {
       "path": ".github/workflows/release.yml",
-      "bytes": 1624,
-      "sha256": "82d5ec3b51e30147783e81b33dea7d316a27725ac5ecfc0cf81897f31ed5626b"
+      "bytes": 3775,
+      "sha256": "ef3d668a20a8353bc85bfb16b0b2c0115490a6e3a4ca53cc2dde6054969928e6"
     },
     {
       "path": ".gitignore",
-      "bytes": 524,
-      "sha256": "e7bc9b3492f88ab5f048ca004283bd20c3d916c82493031e5ae1fd9ea1fb4eb1"
-    },
-    {
-      "path": "启动共鸣.cmd",
-      "bytes": 353,
-      "sha256": "e7ebef738de8125e610c93ba289ebbf8f542a6b19d20fab2fa637d19e26381fe"
-    },
-    {
-      "path": "启动Resonance.cmd",
-      "bytes": 353,
-      "sha256": "e7ebef738de8125e610c93ba289ebbf8f542a6b19d20fab2fa637d19e26381fe"
+      "bytes": 539,
+      "sha256": "2b07e39e50076897968b06297333c60f2d6c22e5ef13dc8bf2017bdce2fc48b9"
     },
     {
       "path": "ARCHITECTURE.md",
       "bytes": 25051,
       "sha256": "01ba2386a58a240b0cac417cd854e22dd72184d95f6a5bbb81879f146d8764d6"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2653,
+      "sha256": "0113f690dc696b4443cc56460ead7f2845e77ae0ff4d0c896ee7757880ec6da9"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 906,
+      "sha256": "487df1a1055686aba58b22a306edb3231470e714835c1f2917425e289e12316d"
+    },
+    {
+      "path": "DESKTOP.md",
+      "bytes": 2519,
+      "sha256": "0b32fabb080b5f9a8466f7525ebf5ae653f48fec24ac6f20cf65a3555ef60f02"
+    },
+    {
+      "path": "GITHUB-PUBLISH.md",
+      "bytes": 2212,
+      "sha256": "b425d46d97c4fe933bed564241836018cab6aae0ed60bedd800804fb063b5388"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1211,
+      "sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9079,
+      "sha256": "d3ee9722a6f7474f6e8514eff277d30e681a95b144688108f8673cb3baa7cf8b"
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 873,
+      "sha256": "e1b4cad19d17d5cdeb2d9321cba23219a8da139781cea9cb916c7234a8505a12"
+    },
+    {
+      "path": "TESTING.md",
+      "bytes": 19326,
+      "sha256": "84cf75885960cdf0bfc68ffb6f62a1ce1ac2b69fe846043822d91073eec1e388"
     },
     {
       "path": "assets/gongming.ico",
@@ -47,21 +77,6 @@
       "path": "assets/gongming.svg",
       "bytes": 426,
       "sha256": "24b9d3601b1c51922b65918116db9fb97c276db21577ead5d7069c7c63df98cf"
-    },
-    {
-      "path": "CHANGELOG.md",
-      "bytes": 2223,
-      "sha256": "e5cee7fb00d14c502ed828cf5b2df5f7029eb4bee0d9b864bc8bf7d0126efb76"
-    },
-    {
-      "path": "CONTRIBUTING.md",
-      "bytes": 906,
-      "sha256": "487df1a1055686aba58b22a306edb3231470e714835c1f2917425e289e12316d"
-    },
-    {
-      "path": "DESKTOP.md",
-      "bytes": 2434,
-      "sha256": "83e250d738caa28eefbf65e7cf64880b2dbf5ac9d2d1f50a2bf180904b83d45b"
     },
     {
       "path": "desktop/browser-check.cjs",
@@ -90,13 +105,13 @@
     },
     {
       "path": "desktop/main.cjs",
-      "bytes": 22444,
-      "sha256": "49a289f4f8a816f40dc0ad8e67816de0556616183ad4e69fcf7b003cc68567b7"
+      "bytes": 23106,
+      "sha256": "972ae330420be8a69d6c1ac093c25b718898ce277862f539a7277db87a8bb1b5"
     },
     {
       "path": "desktop/preload.cjs",
-      "bytes": 3002,
-      "sha256": "cdfb6fe4bbac1f6f0b0f04d397bcc04043b2161cc977b4f187c713b6793a6823"
+      "bytes": 3063,
+      "sha256": "582baeec323e6fee4e5db6273ba9bd74474233ffbb4ee5ce6a7b6c8913962208"
     },
     {
       "path": "desktop/splash.html",
@@ -104,9 +119,14 @@
       "sha256": "0d7c69966ae45741537db7921c12b4786e67acd974ba297b5f0ed39182734617"
     },
     {
+      "path": "dist/api-session.js",
+      "bytes": 4594,
+      "sha256": "80f60efadf318ef529d816051116fe6c0ad304a0027ae3cee0694c3184ce95ce"
+    },
+    {
       "path": "dist/app.js",
-      "bytes": 40327,
-      "sha256": "59c51a4c2ab3d67e96351993c8032634175c74548021a6a2890d52fa6c1b0b55"
+      "bytes": 40368,
+      "sha256": "7afee883ee7436bce64342c13c0d783a870c17953a6c86dfc87e87bd45d727ba"
     },
     {
       "path": "dist/approval-ui.css",
@@ -160,8 +180,8 @@
     },
     {
       "path": "dist/chat.js",
-      "bytes": 80926,
-      "sha256": "3d54e755c986bbfde0859ba93a2e75cfe8a0020327aa6fe465e0a3e10c2a2161"
+      "bytes": 80980,
+      "sha256": "2eeeff877acb9ce2ea6d33c9bcf5450d52c5fab62322432bbbc937477cec5314"
     },
     {
       "path": "dist/chatgpt-ui.js",
@@ -210,8 +230,8 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 13818,
-      "sha256": "d543525bb9da5eb720c8405cb2f964b28c7319ad3ad638ef687cfddd0e1b0e1d"
+      "bytes": 13856,
+      "sha256": "d37535a006121fba6a5ac1b1f865b3fbc720c52da6f5dcb3521c0c9e06ed4cc8"
     },
     {
       "path": "dist/layout.js",
@@ -305,23 +325,13 @@
     },
     {
       "path": "dist/workflows.js",
-      "bytes": 20026,
-      "sha256": "e29384daae62f5e6d6936cfa0646be1802c5ed85eea1cf16bff93e492974547d"
+      "bytes": 20072,
+      "sha256": "e4d8539a91ed8e6bc2cb2cb2ea2872803a2fcddf69af64a086ea24a2ccc7b88e"
     },
     {
       "path": "docs/ENGINEERING-REVIEW.md",
       "bytes": 6507,
       "sha256": "aa9d1fa2a3e098af329b92bac4f1bc0b0ca72ad7eaa1dd9dd5c71b56dc3cc20a"
-    },
-    {
-      "path": "docs/examples/resonance-presentation.json",
-      "bytes": 5244,
-      "sha256": "7a335f101c36ef50a6a95e5ce06c4d1f617726f6db852d330adeff51ab89c8f6"
-    },
-    {
-      "path": "docs/examples/website.gmflow.json",
-      "bytes": 1130,
-      "sha256": "cb33b314bfcf1d37e094b97b589ed16fe111c19d2006a204247d991dceddf586"
     },
     {
       "path": "docs/FRONTEND-OPTIMIZATION-CHECKLIST.md",
@@ -331,7 +341,7 @@
     {
       "path": "docs/GITHUB-ABOUT.md",
       "bytes": 1089,
-      "sha256": "3a947be28d7e705723e8e68834d4ec7d8c17d0b4f1d5ff6b77870c28ea65758f"
+      "sha256": "2fdc80de79f72bdd63fe7a2c0157b029dc338787e8e67c4b7be5b2cffdad00a3"
     },
     {
       "path": "docs/INSTALL.md",
@@ -342,6 +352,41 @@
       "path": "docs/OPTIMIZATION-STATUS.md",
       "bytes": 3469,
       "sha256": "f653c6797d3a00fd059bb559c9cf2279407e8e3d57ca48323f751416dabb494d"
+    },
+    {
+      "path": "docs/RELEASE.md",
+      "bytes": 1492,
+      "sha256": "a43f228b3badff1d9f942d18e2ec6b169c98db5b7da41500b06ecb3f1eddb88b"
+    },
+    {
+      "path": "docs/SECURITY-HARDENING.md",
+      "bytes": 3994,
+      "sha256": "f81f053f4f875b596390064452909fe9e2c2706b92317de0efe06d61ed1d351e"
+    },
+    {
+      "path": "docs/SKILLS.md",
+      "bytes": 1954,
+      "sha256": "995526f62e9c1156c65902252f875e959b01a3620c968429b15fb9a3ac9de5a1"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "bytes": 3366,
+      "sha256": "ae2c60cbbe8d0bc64215927b968c3419ce3151ce18ad588b606dfa3d7fb14160"
+    },
+    {
+      "path": "docs/WORKFLOW-IMPORT.md",
+      "bytes": 4296,
+      "sha256": "4e1f1f28ca14c91215ecc993dc944a7f377fccf76561aa7a1b7d7b5ec743f51c"
+    },
+    {
+      "path": "docs/examples/resonance-presentation.json",
+      "bytes": 5244,
+      "sha256": "7a335f101c36ef50a6a95e5ce06c4d1f617726f6db852d330adeff51ab89c8f6"
+    },
+    {
+      "path": "docs/examples/website.gmflow.json",
+      "bytes": 1130,
+      "sha256": "cb33b314bfcf1d37e094b97b589ed16fe111c19d2006a204247d991dceddf586"
     },
     {
       "path": "docs/screenshots/approval.png",
@@ -424,34 +469,24 @@
       "sha256": "92ab3ce50f7af7aab362d49436d917b2cbed8bbb8a275204b0cd6653f5a6c111"
     },
     {
-      "path": "docs/SKILLS.md",
-      "bytes": 1954,
-      "sha256": "995526f62e9c1156c65902252f875e959b01a3620c968429b15fb9a3ac9de5a1"
-    },
-    {
-      "path": "docs/USAGE.md",
-      "bytes": 3366,
-      "sha256": "ae2c60cbbe8d0bc64215927b968c3419ce3151ce18ad588b606dfa3d7fb14160"
-    },
-    {
-      "path": "docs/WORKFLOW-IMPORT.md",
-      "bytes": 4296,
-      "sha256": "4e1f1f28ca14c91215ecc993dc944a7f377fccf76561aa7a1b7d7b5ec743f51c"
-    },
-    {
-      "path": "GITHUB-PUBLISH.md",
-      "bytes": 2212,
-      "sha256": "b425d46d97c4fe933bed564241836018cab6aae0ed60bedd800804fb063b5388"
-    },
-    {
       "path": "lib/agent-work.mjs",
       "bytes": 7725,
       "sha256": "3432007ed8eb6791b8afb0a0d42df1ab0a0c5fa98db290f6d62489b2c2152c83"
     },
     {
+      "path": "lib/api-session.mjs",
+      "bytes": 2338,
+      "sha256": "c656bd6ad12464934d7d94d73e70a431bd0a21e2c4c29d599e1a30212fedece7"
+    },
+    {
       "path": "lib/audit-log.mjs",
-      "bytes": 1392,
-      "sha256": "b1a29be7a028aa45f8844ac636afcb64afb0586d898613eea16c1d7cb8ef346f"
+      "bytes": 58,
+      "sha256": "d6da2a03a37977c007c9ebe20293d8d473fb4ac0fd8a9de66279318cf3fc76d4"
+    },
+    {
+      "path": "lib/audit-store.mjs",
+      "bytes": 6723,
+      "sha256": "334cdbfd21de347a085131e62cc268d1d8ebcfbe6c380746d19c027099588c74"
     },
     {
       "path": "lib/builtin-skills.mjs",
@@ -505,8 +540,8 @@
     },
     {
       "path": "lib/engine.mjs",
-      "bytes": 58938,
-      "sha256": "151189e1d51e7e3478bb86a526259c5839f4cde5eeb6ff5522ec1de5c05e3ec0"
+      "bytes": 59115,
+      "sha256": "ea90af533a000fa79564b9b92a84abc86333e0c067bd8228c554d76009621958"
     },
     {
       "path": "lib/extensions.mjs",
@@ -594,19 +629,9 @@
       "sha256": "f96f8c946ff6c5ce7cb0e9063a0d870c5faeb9cb1b1a53c49af21aecbd633fc0"
     },
     {
-      "path": "LICENSE",
-      "bytes": 1211,
-      "sha256": "6b0382b16279f26ff69014300541967a356a666eb0b91b422f6862f6b7dad17e"
-    },
-    {
       "path": "package.json",
-      "bytes": 1548,
-      "sha256": "62c6e43172c9f0feb1d4a450772ee22c543fac8cf5d5a2ef1ca93a96f063037e"
-    },
-    {
-      "path": "README.md",
-      "bytes": 8766,
-      "sha256": "abab2f6524b0b4d19faf763ed014bccd1de158bae63ae7b88e3ef3a43c645088"
+      "bytes": 1570,
+      "sha256": "50985d411745a3922e5381dc3642c8781fdadce7897e9353efe9c708229af6f5"
     },
     {
       "path": "scripts/check.mjs",
@@ -620,8 +645,8 @@
     },
     {
       "path": "scripts/package-source.mjs",
-      "bytes": 9391,
-      "sha256": "1ebe12b1929087b66430be3d5910d2768eccdf2763841f0e663d6a4ea04ad007"
+      "bytes": 9420,
+      "sha256": "6bd010b5c21ea9e3ffc3cb3adac9c1c9174e3bcaf9e533efc7486863ac448d63"
     },
     {
       "path": "scripts/recover-history.mjs",
@@ -629,24 +654,19 @@
       "sha256": "ed983cdc39d5b700f5c522bf78e89d8306cc942ac7898d2139cc6ac2f397461a"
     },
     {
-      "path": "SECURITY.md",
-      "bytes": 873,
-      "sha256": "e1b4cad19d17d5cdeb2d9321cba23219a8da139781cea9cb916c7234a8505a12"
-    },
-    {
       "path": "server.mjs",
-      "bytes": 19281,
-      "sha256": "b0b13001fcdce8001e53a4957fdb29635b5add443e2c3e535a79d38807dca937"
-    },
-    {
-      "path": "TESTING.md",
-      "bytes": 19326,
-      "sha256": "84cf75885960cdf0bfc68ffb6f62a1ce1ac2b69fe846043822d91073eec1e388"
+      "bytes": 20115,
+      "sha256": "0827af3c51ab41382e4035aab9f5e308e832be95f6432207a0dccf21d07a4fc1"
     },
     {
       "path": "tests/agent-work.mjs",
       "bytes": 3754,
       "sha256": "35a92cde04e3b435b1ab226fe05cef66bb951d7328a748e10520c39dd6c6cc83"
+    },
+    {
+      "path": "tests/api-session.mjs",
+      "bytes": 4942,
+      "sha256": "4ccdd6d0fcefcbd057a7b924149f194bacd22d6bcdfe493fbc5d25274e99f77c"
     },
     {
       "path": "tests/approval-policy.mjs",
@@ -660,13 +680,13 @@
     },
     {
       "path": "tests/audit-log.mjs",
-      "bytes": 2799,
-      "sha256": "f06f2a24f0da22d1ba139cacb6499e79719c08c9199ca15c4396b479ac73d396"
+      "bytes": 5002,
+      "sha256": "91ea35a05035edabe1d57071616ec72e8ed1c8a8db96ebd0e6e0823352653bf1"
     },
     {
       "path": "tests/backend.mjs",
-      "bytes": 30254,
-      "sha256": "932245c5a09c16fb105cf639b4f35e9e0bbfae3a467fa6f5a1cd68d66ae52eef"
+      "bytes": 30613,
+      "sha256": "3a281e9a4da9abe9142d38a78983c293428a8e12e83fd90fe72368272ce62e57"
     },
     {
       "path": "tests/builtin-skills.mjs",
@@ -800,8 +820,8 @@
     },
     {
       "path": "tests/source-package.mjs",
-      "bytes": 3660,
-      "sha256": "7e46b90ca2fac4d48c3bb3afd4bf1e62ef83eb3109270872911247343ce897bb"
+      "bytes": 3669,
+      "sha256": "78db2dab8b9f68834d9475a49a19d5684caf3195889b13a33f57b9cee4fc3866"
     },
     {
       "path": "tests/task-errors.mjs",
@@ -825,8 +845,8 @@
     },
     {
       "path": "tests/workflow-library.mjs",
-      "bytes": 12050,
-      "sha256": "d89d28f4cdda67ccfdcaac8457203474b7429a45e2a607e7209917747ab6d05b"
+      "bytes": 12112,
+      "sha256": "77ce29df4ad16d8341a43e8ca16fe6de962d5c5861b3f5ededc42357b5edb391"
     },
     {
       "path": "tests/workflow-pipeline.mjs",
@@ -842,6 +862,11 @@
       "path": "tests/workflows.mjs",
       "bytes": 10708,
       "sha256": "93efa33057b8c48fdd56900d9d776da5619c3cec474a77f33e5357cd99a3ba51"
+    },
+    {
+      "path": "启动Resonance.cmd",
+      "bytes": 369,
+      "sha256": "7c9ba5e1c7687af3f31ce7f725fedeb0d7edff199b74474122a568529fa78eae"
     }
   ]
 }

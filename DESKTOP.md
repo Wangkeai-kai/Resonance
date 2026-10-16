@@ -1,4 +1,4 @@
-# Resonance Windows 桌面版 v1.1.1
+# Resonance Windows 桌面版 v1.1.3
 
 解压软件 ZIP 后，双击 Resonance.exe。必须保留同目录的资源和 DLL 文件。也可以运行 install.cmd，安装到当前用户目录并创建桌面快捷方式，见 docs/INSTALL.md。
 
@@ -33,4 +33,4 @@ GONGMING_DESKTOP_USER_DATA 可指定独立绝对数据目录，GONGMING_DESKTOP_
 
 诊断日志位于用户数据的 logs 目录，按固定事件字段记录并轮转，不直接保存 stderr、密钥、请求正文或路径。启动等待最长 90 秒。本机服务只绑定回环地址，端口占用时自动选择新端口。
 
-本发行版未做代码签名，不含自动更新；安装脚本不等同于带签名安装器。macOS / Linux 发行包尚未完成验证。GitHub Actions 的手动构建工作流只产出附件供下载，不自动发布。
+本发行版未做代码签名，不含自动更新；安装脚本不等同于带签名安装器。macOS / Linux 发行包尚未完成验证。版本变更推送到 main 后，GitHub Actions 运行检查、构建与打包，全部成功后才发布带 Windows 压缩包、源码包和校验和的预览 Release。

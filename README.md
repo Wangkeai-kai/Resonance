@@ -4,11 +4,13 @@
 
 Resonance 是本地运行的多 AI 工作台。连接不同厂商和本地模型，让总控分析需求、安排角色，在同一处查看讨论、修改、测试和交付物。适用于代码项目、网站、PPT、文档与项目计划。
 
-当前为 **v1.1.2 Windows 预览版**。原名称为“共鸣”，数据目录与文件格式保持兼容。界面保留中文。项目与模型厂商没有官方关联。许可证：[Unlicense](LICENSE)。
+当前为 **v1.1.3 Windows 预览版**。原名称为“共鸣”，数据目录与文件格式保持兼容。界面保留中文。项目与模型厂商没有官方关联。许可证：[Unlicense](LICENSE)。
 
 ![Resonance 对话界面](docs/screenshots/resonance-chat.png)
 
 截图为本地模拟数据，不代表真实模型生成结果或已开通账号。
+
+本次安全加固与边界见 [安全加固说明](docs/SECURITY-HARDENING.md)。
 
 ## v1.1.2 常用技能与演示改进
 
@@ -58,7 +60,7 @@ Resonance 是本地运行的多 AI 工作台。连接不同厂商和本地模型
 npm start -- --port 4173
 ```
 
-打开 <http://127.0.0.1:4173>，或在 Windows 双击 `启动Resonance.cmd`。桌面开发及打包：
+源码用户在 Windows 双击唯一入口 `启动Resonance.cmd`，或运行 `npm start`，然后打开终端打印的完整访问链接（含 `#session=`）。不要同时启动两份服务；重启后使用新链接。桌面版直接打开 `Resonance.exe`，无需再运行脚本，鉴权会自动完成。桌面开发及打包：
 
 ```sh
 npm install

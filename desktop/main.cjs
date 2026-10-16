@@ -79,6 +79,11 @@ const isTrustedSender = event => Boolean(window && !window.isDestroyed()
   && event.sender === window.webContents && event.senderFrame === window.webContents.mainFrame
   && (isSplash(event.senderFrame.url) || isWorkspace(event.senderFrame.url)));
 
+ipcMain.handle('desktop:api-token', event => {
+  if (!isTrustedSender(event) || !isWorkspace(event.senderFrame.url) || backend?.exited) return null;
+  return backend?.apiToken || null;
+});
+
 async function showSplash(state, title, detail) {
   splashState = { state, title, detail };
   if (!window || window.isDestroyed() || quitting) return;
@@ -200,10 +205,10 @@ async function waitUntilReady(record, expectedOrigin, attempt) {
       throw Object.assign(new Error('local-server-stopped'), { startupCode: record.startupCode || 'startup_failed' });
     }
     // A successful HTTP response from another process cannot count as our backend.
-    if (record.listening) {
+    if (record.listening && record.apiToken) {
       try {
         const response = await fetch(`${expectedOrigin}/api/status`, {
-          signal: AbortSignal.timeout(1200), redirect: 'error',
+          signal: AbortSignal.timeout(1200), redirect: 'error', headers: {Authorization: `Bearer ${record.apiToken}`},
         });
         if (response.ok) {
           const data = await response.json();
@@ -271,6 +276,9 @@ async function startWorkspace() {
       backend = record;
       let browserTestBusy=false;
       child.on('message', message => {
+        if(message?.type==='gongming:ready' && /^[a-f0-9]{64}$/.test(message.token||'')) {
+          record.apiToken=message.token;record.listening=true;return;
+        }
         if(message?.type==='gongming:browser-check'&&typeof message.id==='string'&&message.id.length<=100&&child.connected){
           if(browserTestBusy){child.send({type:'gongming:browser-result',id:message.id,error:true});return;}
           browserTestBusy=true;
@@ -322,7 +330,9 @@ async function startWorkspace() {
       diagnostics.record('backend_ready', {elapsedMs:Date.now() - startedAt});
       if (!SMOKE) window.show();
       if (SMOKE) {
-        smokeReport = { state: 'ready', url: `${origin}/`, title: window.getTitle(), backendPid: child.pid, capabilities: status.capabilities };
+        const rendererStatus = await window.webContents.executeJavaScript("fetch('/api/status').then(response=>response.status)");
+        if (rendererStatus !== 200) throw new Error('renderer-session-failed');
+        smokeReport = { state: 'ready', rendererStatus, url: `${origin}/`, title: window.getTitle(), backendPid: child.pid, capabilities: status.capabilities };
         process.stdout.write(`${JSON.stringify({ event: 'desktop-ready', ...smokeReport })}\n`);
         setTimeout(() => app.quit(), 5000).unref();
       } else if (changed) {

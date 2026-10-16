@@ -7,7 +7,7 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-echo Resonance local workspace: http://127.0.0.1:4173
+echo Starting Resonance. Open the complete access link printed below.
 echo Keep this window open while using the application. Press Ctrl+C to stop.
 node server.mjs --port 4173
 if errorlevel 1 pause
